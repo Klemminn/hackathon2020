@@ -1,0 +1,16 @@
+$purple: #6F00FF;
+$white: #FFFFFF;
+$pink: #FF1493;
+$blue: #1493FF;
+
+:root {
+  --purple: #{$purple};
+  --purple-light: #{lighten($purple, 20%)};
+  --purple-soft: #{lighten($purple, 40%)};
+
+  --white: #{$white};
+  
+  --blue: #{$blue};
+
+  --pink: #{$pink};
+}
