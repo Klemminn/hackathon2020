@@ -7,6 +7,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "types": [
+      "facebook-js-sdk" // facebook
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
