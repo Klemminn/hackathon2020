@@ -1,11 +1,11 @@
 class Co2EmissionService {
-  co2TonnesPerTree: float = 0.1;
-  treesPerTonCo2: float = 10;
-  static getCo2TonnesForTreeCount(treeCount) {
+  static co2TonnesPerTree: number = 0.1;
+  static treesPerTonCo2: number = 10;
+  static getCo2TonnesForTreeCount(treeCount: number) {
     return this.co2TonnesPerTree * treeCount;
   }
 
-  static getTreeCountForCo2Tonnes(tonnesCo2) {
+  static getTreeCountForCo2Tonnes(tonnesCo2: number) {
     return this.treesPerTonCo2 * tonnesCo2;
   }
   /**
