@@ -3,7 +3,11 @@ import { FaSpinner } from 'react-icons/fa'
 
 import './Spinner.scss'
 
-const Spinner = ({ size = 4 }) => {
+type SpinnerProps = {
+  size?: number
+}
+
+const Spinner = ({ size = 2 }: SpinnerProps) => {
   return (
     <div className='spinner-component'>
       <FaSpinner className='icon-spin' size={`${size}em`} />
