@@ -1,7 +1,7 @@
 /* global FB */
 import React, { useEffect, useState } from 'react'
 
-import { Loading, FacebookLoginButton, UserButton } from 'components'
+import { Loading, FacebookLoginButton, UserDropdown } from 'components'
 import { User } from 'types'
 
 const UserHeaderStatus = () => {
@@ -26,9 +26,17 @@ const UserHeaderStatus = () => {
     }
   }
 
+  const facebookLogout = () => {
+    FB.logout((response) => {
+      console.log(response)
+      setUser(null)
+      setStatus('')
+    })
+  }
+
   const facebookLogin = () => {
     FB.login((response) => {
-      console.log(response)
+      getFacebookInfo()
     }, { scope: 'public_profile,email' })
   }
 
@@ -52,7 +60,10 @@ const UserHeaderStatus = () => {
     } else if (!user) {
       return <FacebookLoginButton onClick={facebookLogin} />
     }
-    return <UserButton user={user} />
+    return <UserDropdown
+      user={user}
+      logout={facebookLogout}
+    />
   }
 
   return <UserState />
