@@ -1,2 +1,2 @@
-export type { User } from './User'
+export type { Participant } from './Participant'
 export type { Municipality } from './Municipality'

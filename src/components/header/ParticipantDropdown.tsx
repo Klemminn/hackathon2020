@@ -1,17 +1,17 @@
 import React from 'react'
 
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap'
-import { User } from 'types'
+import { Participant } from 'types'
 
-type UserDropdownProps = {
-  user?: User,
+type ParticipantDropdownProps = {
+  participant?: Participant,
   logout(): void
 }
 
-const UserDropdown = ({ user, logout }: UserDropdownProps) => (
+const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) => (
   <UncontrolledDropdown nav inNavbar>
     <DropdownToggle nav caret>
-      {`${user?.name} - ${user?.trees} trjám plantað`}
+      {`${participant?.name} - ${participant?.trees} trjám plantað`}
     </DropdownToggle>
     <DropdownMenu right>
       <DropdownItem>
@@ -25,4 +25,4 @@ const UserDropdown = ({ user, logout }: UserDropdownProps) => (
   </UncontrolledDropdown>
 )
 
-export default UserDropdown
+export default ParticipantDropdown

@@ -1,13 +1,13 @@
 /* global FB */
 import React, { useEffect, useState } from 'react'
 
-import { Loading, FacebookLoginButton, UserDropdown } from 'components'
+import { Loading, FacebookLoginButton, ParticipantDropdown } from 'components'
 import { ParticipantService, MunicipalityService } from 'services'
-import { User } from 'types'
+import { Participant } from 'types'
 
 const UserHeaderStatus = () => {
   const [status, setStatus] = useState('')
-  const [user, setUser]: [User, any] = useState(null)
+  const [participant, setParticipant]: [Participant, any] = useState(null)
 
   const checkFacebookStatus = () => {
     setStatus('loading')
@@ -28,7 +28,7 @@ const UserHeaderStatus = () => {
 
   const facebookLogout = () => {
     FB.logout((response) => {
-      setUser(null)
+      setParticipant(null)
       setStatus('')
     })
   }
@@ -43,8 +43,8 @@ const UserHeaderStatus = () => {
     FB.api('/me', { fields: 'name, email' }, async (response: any) => {
       console.log(response)
       if (!response.error) {
-        const participant = await ParticipantService.getParticipant(response)
-        setUser(participant)
+        const currentParticipant = await ParticipantService.getParticipant(response)
+        setParticipant(currentParticipant)
         setStatus('connected')
       }
     })
@@ -59,11 +59,11 @@ const UserHeaderStatus = () => {
   const UserState = () => {
     if (status === 'loading') {
       return <Loading />
-    } else if (!user) {
+    } else if (!participant) {
       return <FacebookLoginButton onClick={facebookLogin} />
     }
-    return <UserDropdown
-      user={user}
+    return <ParticipantDropdown
+      participant={participant}
       logout={facebookLogout}
     />
   }

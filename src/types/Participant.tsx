@@ -1,4 +1,4 @@
-export type User = {
+export type Participant = {
   id?: number,
   name: string,
   email: string,

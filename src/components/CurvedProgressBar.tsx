@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import EmissionData from "types/EmissionData";
 import {Co2EmissionService} from "services";
 import {ProgressBar} from "components"
