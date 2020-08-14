@@ -11,7 +11,7 @@ type UserDropdownProps = {
 const UserDropdown = ({ user, logout }: UserDropdownProps) => (
   <UncontrolledDropdown nav inNavbar>
     <DropdownToggle nav caret>
-      { user?.name }
+      {`${user?.name} - ${user?.trees} trjám plantað`}
     </DropdownToggle>
     <DropdownMenu right>
       <DropdownItem>

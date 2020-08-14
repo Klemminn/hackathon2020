@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { Loading, FacebookLoginButton, UserDropdown } from 'components'
+import { ParticipantService, MunicipalityService } from 'services'
 import { User } from 'types'
 
 const UserHeaderStatus = () => {
@@ -12,7 +13,6 @@ const UserHeaderStatus = () => {
     setStatus('loading')
     if (typeof FB !== 'undefined') {
       FB.getLoginStatus((response: any) => {
-        console.log(response)
         if (response.status === 'connected') {
           getFacebookInfo()
         } else {
@@ -28,7 +28,6 @@ const UserHeaderStatus = () => {
 
   const facebookLogout = () => {
     FB.logout((response) => {
-      console.log(response)
       setUser(null)
       setStatus('')
     })
@@ -41,11 +40,11 @@ const UserHeaderStatus = () => {
   }
 
   const getFacebookInfo = () => {
-    FB.api('/me', { fields: 'name, email' }, (response: any) => {
+    FB.api('/me', { fields: 'name, email' }, async (response: any) => {
       console.log(response)
       if (!response.error) {
-        // todo: get from our own database the points for the given email.. or id maybe for security by obscurity
-        setUser(response)
+        const participant = await ParticipantService.getParticipant(response)
+        setUser(participant)
         setStatus('connected')
       }
     })
@@ -53,6 +52,7 @@ const UserHeaderStatus = () => {
 
   useEffect(() => {
     checkFacebookStatus()
+    MunicipalityService.getMunicipalities()
   // eslint-disable-next-line
   }, [])
 
