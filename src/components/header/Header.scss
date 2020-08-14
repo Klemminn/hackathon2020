@@ -1,10 +1,16 @@
 .header-component {
-  .navbar-brand {
-    img {
-      height: 5em;
+  .navbar {
+    padding: 0 !important;
+    height: 0;
+
+    .navbar-brand {
+      img {
+        height: 5em;
+      }
     }
-  }
-  .nav-item {
-    display: flex;
+    .nav-item {
+      display: flex;
+      margin-top: 1em;
+    }
   }
 }

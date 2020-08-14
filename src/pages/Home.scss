@@ -5,12 +5,12 @@
   .intro_section {
     background-image: url("/assets/jon-flobrant-oRUQsTX9Zv0-unsplash.jpg");
     width:100vw;
-    height:90vh;
+    height: 100vh;
     margin:0;
     background-size:cover;
     background-attachment: fixed;
     display:flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-flow:column nowrap;
 
     .counter_and_logo_outer_container {
@@ -22,7 +22,7 @@
       justify-content: center;
       display: flex;
       flex-flow:column-nowrap;
-      background-color:rgba(255,255,255,0.2);
+      // background-color:rgba(255,255,255,0.2);
 
       .counter_and_logo_container {
         display: flex;
