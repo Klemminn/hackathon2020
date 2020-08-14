@@ -1,3 +1,5 @@
+import EmissionData from "../types/EmissionData"
+
 class Co2EmissionService {
   static co2TonnesPerTree: number = 0.1;
   static treesPerTonCo2: number = 10;
@@ -8,14 +10,16 @@ class Co2EmissionService {
   static getTreeCountForCo2Tonnes(tonnesCo2: number) {
     return this.treesPerTonCo2 * tonnesCo2;
   }
+
+
+
   /**
    * Returns an array of emissiondata in tonnes of co2
    * Each entry in array has a label and value
    **/
-  static getCo2EmissionData() {
+  static getCo2EmissionData() : Array<EmissionData> {
     //harðkóðað 4 now
-    return;
-    [
+    return [
       {
         label: "Flugsamgöngur",
         value: 1542.68

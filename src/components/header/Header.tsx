@@ -10,7 +10,7 @@ const Header = () => {
     <Container className='header-component'>
       <Navbar>
         <NavbarBrand>
-          <img alt='Our logo' src='/assets/logo-200x200.png' />
+       
         </NavbarBrand>
         <NavItem>
           <UserHeaderStatus />

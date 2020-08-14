@@ -3,11 +3,13 @@ $white: #FFFFFF;
 $pink: #FF1493;
 $blue: #1493FF;
 
+
 :root {
   --purple: #{$purple};
   --purple-light: #{lighten($purple, 20%)};
   --purple-soft: #{lighten($purple, 40%)};
-
+  --progress-bar-trail: #a6a8b6;
+  --progress-bar-fill: #fff234;
   --white: #{$white};
   
   --blue: #{$blue};

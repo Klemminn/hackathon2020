@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom'
 
-import { Header } from 'components'
+import { Header, CurvedProgressBar } from 'components'
 
 import { Home } from 'pages'
 
@@ -16,7 +16,7 @@ import './styles/index.scss'
 const App = () => (
   <>
     <Header />
-    <div className='container route-container'>
+    <div>
       <Router>
         <Switch>
           <Route exact path='/' component={Home} />

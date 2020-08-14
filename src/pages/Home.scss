@@ -1,3 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+
 .home-page {
-  
+  .intro_section {
+    background-image: url("/assets/jon-flobrant-oRUQsTX9Zv0-unsplash.jpg");
+    width:100vw;
+    height:90vh;
+    margin:0;
+    background-size:cover;
+    background-attachment: fixed;
+    display:flex;
+    justify-content: flex-end;
+    flex-flow:column nowrap;
+
+    .counter_and_logo_outer_container {
+
+      width: 100%;
+      padding-top:2em;
+   
+      position: relative;
+      justify-content: center;
+      display: flex;
+      flex-flow:column-nowrap;
+      background-color:rgba(255,255,255,0.2);
+
+      .counter_and_logo_container {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: auto;
+        margin-top:10vh;
+        position: absolute;
+        width: 20%;
+        .logo {
+          width: 100%;
+          max-width:200px;
+          margin:auto;
+          animation-name: fadeIn;
+          opacity: 0;
+          animation-iteration-count: 1;
+          animation-duration: 1.5s;
+          animation-delay: 3s;
+          animation-timing-function: ease-in;
+          animation-fill-mode: forwards;
+        }
+
+        .treecounter {
+          margin: 0;
+          text-align: center;
+          width: 100%;
+          font-family: 'Nunito', sans-serif;
+   
+          color:black;
+        
+          animation-name: fadeIn;
+          font-weight:bold;
+          opacity: 0;
+          animation-iteration-count: 1;
+          animation-duration: 1.5s;
+          animation-delay: 1s;
+          animation-timing-function: ease-in;
+          animation-fill-mode: forwards;
+          p:first-child{
+            font-size:1.5em;
+
+          }
+          p{
+            margin:0;
+            font-size:1.25em;
+          }
+        }
+      }
+
+      .progressbar-container {
+        width: 70%;
+        height: 35%;
+        max-width: 600px;
+      }
+    }
+  }
+
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
