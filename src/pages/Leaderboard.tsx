@@ -5,8 +5,8 @@ import { Container } from 'reactstrap'
 import './Leaderboard.scss'
 
 const Leaderboard = () => (
-  <Container>
-    <div className='leaderboard-page'>lala</div>
+  <Container className='leaderboard-page'>
+    <div>lala</div>
   </Container>
 )
 

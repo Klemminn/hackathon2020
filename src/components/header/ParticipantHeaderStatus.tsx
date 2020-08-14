@@ -6,17 +6,17 @@ import { ParticipantService, MunicipalityService } from 'services'
 import { Participant } from 'types'
 
 const UserHeaderStatus = () => {
-  const [status, setStatus] = useState('')
+  const [loading, setLoading] = useState(false)
   const [participant, setParticipant]: [Participant, any] = useState(null)
 
   const checkFacebookStatus = () => {
-    setStatus('loading')
+    setLoading(true)
     if (typeof FB !== 'undefined') {
       FB.getLoginStatus((response: any) => {
         if (response.status === 'connected') {
           getFacebookInfo()
         } else {
-          setStatus(response.status)
+          setLoading(false)
         }
       })
     } else {
@@ -27,14 +27,14 @@ const UserHeaderStatus = () => {
   }
 
   const facebookLogout = () => {
-    FB.logout((response) => {
+    FB.logout(() => {
       setParticipant(null)
-      setStatus('')
+      setLoading(false)
     })
   }
 
   const facebookLogin = () => {
-    FB.login((response) => {
+    FB.login(() => {
       getFacebookInfo()
     }, { scope: 'public_profile,email' })
   }
@@ -42,10 +42,13 @@ const UserHeaderStatus = () => {
   const getFacebookInfo = () => {
     FB.api('/me', { fields: 'name, email' }, async (response: any) => {
       console.log(response)
-      if (!response.error) {
-        const currentParticipant = await ParticipantService.getParticipant(response)
-        setParticipant(currentParticipant)
-        setStatus('connected')
+      try {
+        if (!response.error) {
+          const currentParticipant = await ParticipantService.getParticipant(response)
+          setParticipant(currentParticipant)
+        }
+      } finally {
+        setLoading(false)
       }
     })
   }
@@ -57,7 +60,7 @@ const UserHeaderStatus = () => {
   }, [])
 
   const UserState = () => {
-    if (status === 'loading') {
+    if (loading) {
       return <Loading />
     } else if (!participant) {
       return <FacebookLoginButton onClick={facebookLogin} />
