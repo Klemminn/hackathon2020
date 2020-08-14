@@ -28,10 +28,11 @@
         display: flex;
         flex-flow: column nowrap;
         margin: auto;
-        margin-top:10vh;
+        margin-top: 5vh;
         position: absolute;
         width: 20%;
         .logo {
+          filter: drop-shadow(2px 4px 10px white);
           width: 100%;
           max-width:200px;
           margin:auto;
@@ -50,7 +51,8 @@
           width: 100%;
           font-family: 'Nunito', sans-serif;
    
-          color:black;
+          text-shadow: 0 0 0.2em #000;
+          color: white;
         
           animation-name: fadeIn;
           font-weight:bold;

@@ -41,11 +41,13 @@ const UserHeaderStatus = () => {
   }
 
   const getFacebookInfo = () => {
-    FB.api('/me', { fields: 'name, email' }, (user) => {
-      console.log(user)
-      // todo: get from our own database the points for the given email
-      setUser(user)
-      setStatus('connected')
+    FB.api('/me', { fields: 'name, email' }, (response: any) => {
+      console.log(response)
+      if (!response.error) {
+        // todo: get from our own database the points for the given email.. or id maybe for security by obscurity
+        setUser(response)
+        setStatus('connected')
+      }
     })
   }
 
