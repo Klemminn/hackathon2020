@@ -13,6 +13,7 @@ const UserHeaderStatus = () => {
     setLoading(true)
     if (typeof FB !== 'undefined') {
       FB.getLoginStatus((response: any) => {
+        console.log('FB get login status response', response)
         if (response.status === 'connected') {
           getFacebookInfo()
         } else {
@@ -41,7 +42,7 @@ const UserHeaderStatus = () => {
 
   const getFacebookInfo = () => {
     FB.api('/me', { fields: 'name, email' }, async (response: any) => {
-      console.log(response)
+      console.log('FB /me response', response)
       try {
         if (!response.error) {
           const currentParticipant = await ParticipantService.getParticipant(response)

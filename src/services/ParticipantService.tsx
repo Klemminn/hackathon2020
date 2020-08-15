@@ -8,6 +8,11 @@ class ParticipantService {
     const { data } = await connector.post('/participant/', body)
     return data
   }
+
+  static async getParticipants () {
+    const { data } = await connector.get('/participants/')
+    return data
+  }
 }
 
 export default ParticipantService

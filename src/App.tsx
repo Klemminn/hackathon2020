@@ -8,7 +8,7 @@ import {
 
 import { Header } from 'components'
 
-import { Home, Leaderboard } from 'pages'
+import { Home } from 'pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles/index.scss'
@@ -19,7 +19,6 @@ const App = () => (
       <Header />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/leaderboard' component={Leaderboard} />
         <Redirect to='/' />
       </Switch>
     </Router>

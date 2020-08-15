@@ -1,7 +1,8 @@
 export * from './buttons'
 export * from './header'
 export * from './inputs'
-export * from './layout/index'
+export * from './layout'
+export * from './modals'
 
 export { default as Link } from './Link'
 export { default as Loading } from './Loading'

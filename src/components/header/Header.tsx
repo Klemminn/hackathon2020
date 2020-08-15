@@ -1,7 +1,7 @@
 import React from 'react'
-import { Navbar, Container, NavItem } from 'reactstrap'
+import { Navbar, Container } from 'reactstrap'
 
-import { Button, ParticipantHeaderStatus } from 'components'
+import { ParticipantHeaderStatus } from 'components'
 
 import './Header.scss'
 
@@ -9,14 +9,8 @@ const Header = () => {
   return (
     <Container className='header-component'>
       <Navbar>
-        <NavItem>
-          <Button link='/leaderboard'>
-            Sjá stigatöflu
-          </Button>
-        </NavItem>
-        <NavItem>
-          <ParticipantHeaderStatus />
-        </NavItem>
+        <div />
+        <ParticipantHeaderStatus />
       </Navbar>
     </Container>
   )
