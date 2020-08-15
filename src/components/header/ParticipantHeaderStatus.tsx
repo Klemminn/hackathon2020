@@ -30,7 +30,6 @@ const UserHeaderStatus = () => {
   const facebookLogout = () => {
     FB.logout(() => {
       setParticipant(null)
-      setLoading(false)
     })
   }
 
