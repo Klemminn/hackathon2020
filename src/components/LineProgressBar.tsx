@@ -5,15 +5,15 @@ type ProgressBarProps = {
   [rest:string]: any
 }
 
-const CurvedProgressBar = ({ ...rest }: ProgressBarProps) => {
+const LineProgressBar = ({ ...rest }: ProgressBarProps) => {
   const fillColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--progress-bar-fill')
 
   const trailColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--progress-bar-trail')
-  console.log(trailColor, fillColor)
+
   return (
-    <ProgressBar.SemiCircle
+    <ProgressBar.Line
       options={{
         strokeWidth: 4,
         color: fillColor,
@@ -26,4 +26,4 @@ const CurvedProgressBar = ({ ...rest }: ProgressBarProps) => {
   )
 }
 
-export default CurvedProgressBar
+export default LineProgressBar

@@ -3,4 +3,4 @@ export type Municipality = {
   name: string,
   population: string,
   trees: number
-} | null
+}

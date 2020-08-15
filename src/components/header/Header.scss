@@ -4,6 +4,10 @@
     height: 0;
     z-index: 1;
 
+    button {
+      margin-top: 1em;
+    }
+
     .navbar-brand {
       img {
         height: 5em;
@@ -11,7 +15,10 @@
     }
     .nav-item {
       display: flex;
-      margin-top: 1em;
+
+      .button-component {
+        background-color: var(--green);
+      }
     }
   }
 }

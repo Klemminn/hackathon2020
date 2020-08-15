@@ -1,8 +1,8 @@
 /* global FB */
 import React, { useEffect, useState } from 'react'
 
-import { Loading, FacebookLoginButton, ParticipantDropdown } from 'components'
-import { ParticipantService, MunicipalityService } from 'services'
+import { FacebookLoginButton, ParticipantDropdown } from 'components'
+import { ParticipantService } from 'services'
 import { Participant } from 'types'
 
 const UserHeaderStatus = () => {
@@ -55,13 +55,12 @@ const UserHeaderStatus = () => {
 
   useEffect(() => {
     checkFacebookStatus()
-    MunicipalityService.getMunicipalities()
   // eslint-disable-next-line
   }, [])
 
   const UserState = () => {
     if (loading) {
-      return <Loading />
+      return null
     } else if (!participant) {
       return <FacebookLoginButton onClick={facebookLogin} />
     }

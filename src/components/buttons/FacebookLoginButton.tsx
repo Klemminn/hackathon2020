@@ -1,6 +1,7 @@
 import React from 'react'
+import { FaFacebook } from 'react-icons/fa'
 
-import { Button } from 'components'
+import { IconButton } from 'components'
 
 import './FacebookLoginButton.scss'
 
@@ -9,12 +10,12 @@ type FacebookLoginButtonProps = {
 }
 
 const FacebookLoginButton = ({ onClick }: FacebookLoginButtonProps) => (
-  <Button
-    className='facebook-login-component'
+  <IconButton
+    className='facebook-login-button-component'
     onClick={onClick}
-  >
-    Innskrá með Facebook
-  </Button>
+    text='Innskrá með Facebook'
+    icon={FaFacebook}
+  />
 )
 
 export default FacebookLoginButton

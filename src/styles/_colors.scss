@@ -2,6 +2,8 @@ $purple: #6F00FF;
 $white: #FFFFFF;
 $pink: #FF1493;
 $blue: #1493FF;
+$green: #3A8617;
+$facebook-blue: #4267B2;
 
 
 :root {
@@ -11,7 +13,9 @@ $blue: #1493FF;
   --progress-bar-trail: #a6a8b6;
   --progress-bar-fill: #fff234;
   --white: #{$white};
-  
+  --green: #{$green};
+  --facebook-blue: #{$facebook-blue};
+
   --blue: #{$blue};
 
   --pink: #{$pink};
