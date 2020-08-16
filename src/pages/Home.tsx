@@ -85,19 +85,20 @@ const Home = () => {
         <div className="counter_and_logo_outer_container">
           <div className="counter_and_logo_container">
             <Co2Counter className="co2counter" totalOffset={totalOffset} />
+            <Button className='offset-yourself'>Jafnaðu þig</Button>
             <div className="municipalities-progress">
-          {municipalities.map((m, idx) =>
-            idx >= 5 ? null : (
-              <MunicipalityProgress
-                key={m.id}
-                municipality={m}
-                totalPopulation={totalPopulation}
-                totalCo2={totalCo2}
-              />
-            )
-          )}
-          <Button>Sjá öll</Button>
-        </div>
+              {municipalities.map((m, idx) =>
+                idx >= 5 ? null : (
+                  <MunicipalityProgress
+                    key={m.id}
+                    municipality={m}
+                    totalPopulation={totalPopulation}
+                    totalCo2={totalCo2}
+                  />
+                )
+              )}
+              <Button className='view-all-municipalities'>Sjá öll</Button>
+            </div>
           </div>
           <CurvedProgressBar progress={progress} />
         </div>
@@ -110,13 +111,10 @@ const Home = () => {
         isOpen={openModal === "leaderboard"}
         toggle={() => setOpenModal("")}
       />
-
-      <InfoSection title = "Jöfnum okkur á loftlagsbreytingum!"  text = "Gerðu þitt í baráttunni með því að gróðursetja tré. Skráðu þig inn í gegnum Facebook og kauptu tré frá kolefnisjöfnunarsjóði að eigin vali. Jafnaðu þig á loftlagsbreytingum og losnaðu við flugviskubitið!"
-      imagePath="/assets/travel.png" />
-
-      <InfoSection title = "Hvað er kolefnisjöfnun?"
-                   text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, en ein þeirra er að  gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
-                   imagePath="/assets/seed.png" />
+      <InfoSection
+        title = "Hvað er kolefnisjöfnun?"
+        text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, en ein þeirra er að  gróðursetja tré."
+      />
 
 <InfoSection title = "Jafnaðu þig mest!"
                    text = "Við höldum utan um það hvaða bæjarfélög jafna sig hraðast. Þeir sem hafa mesta jafnaðargeðið birtast á topp fimm lista okkar, en þú sem einstaklingur birtist einnig í einstaklingskeppninni. Sýndu vinum og ættingjum þínum hversu jafnlyndur einstaklingur þú ert!"
