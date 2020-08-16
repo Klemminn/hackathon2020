@@ -26,6 +26,10 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
   ];
   var colorsBuffer = colors.map(x=> x);
   const charTitle = "Losun CO2 í tonnum";
+  const chartTooltipBackground = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--chart-tooltip-background");
+
   const chartTooltipColor = getComputedStyle(
     document.documentElement
   ).getPropertyValue("--chart-tooltip-color");
@@ -44,8 +48,9 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
       return {
         data: [x.co2],
         label:x.name,
+        subgroups : x.subtypes.sort((z:any, y:any) => y.co2 - z.co2),
         backgroundColor: colorsBuffer.length > 0 ? colorsBuffer.pop() : (colorsBuffer = colors.map(x=> x)).pop(),
-        hoverBorderColor: chartTooltipColor,
+        hoverBorderColor: chartTooltipBackground,
         hoverBorderWidth: 1.5
       };
     }),
@@ -101,7 +106,13 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
       mode: "nearest",
       axis: 'y',
       intersect:false,
-      backgroundColor: chartTooltipColor,
+      backgroundColor: chartTooltipBackground,
+      bodyFontColor: chartTooltipColor,
+      titleFontColor: chartTooltipColor,
+      titleFontSize:20,
+      bodyFontSize:14,
+      bodySpacing:3,
+      titleAlign:"center",
       callbacks: {
         title: function(tooltipItem: any, data: any) {
           console.log(tooltipItem, data)
@@ -109,13 +120,17 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
           return data.datasets[tooltipItem.datasetIndex].label;;
         },
         label: function(tooltipItem: any, data: any) {
-          var label = data.datasets[tooltipItem.datasetIndex].label;
-          var percentageOfSum =
-            Math.round(
-              (data.datasets[tooltipItem.datasetIndex].data[0] / sumTotal) *
-                1000
-            ) / 10;
-          return label + ": " + percentageOfSum + "%";
+          var label = data.datasets[tooltipItem.datasetIndex].subgroups
+              .map( (x: any) => {
+                var percentage = Math.round(
+                  (x.co2 / sumTotal) *
+                    1000
+                ) / 10;
+                  return x.name + ": " + percentage + "%"
+              });
+
+         
+          return label;
         }
       }
     }
