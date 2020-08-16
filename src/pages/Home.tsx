@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, Chart } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress,InfoSection, Chart } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService } from 'services'
 import { Municipality } from 'types'
 
@@ -80,15 +80,12 @@ const Home = () => {
 
   return (
     <div className="home-page">
-   
+      <img className="logo" alt="Jöfnum okkur" src="/assets/logo-200x200.png" />
       <section className="intro_section">
         <div className="counter_and_logo_outer_container">
           <div className="counter_and_logo_container">
             <Co2Counter className="co2counter" totalOffset={totalOffset} />
-          </div>
-          <CurvedProgressBar progress={progress} />
-        </div>
-        <div className="municipalities-progress">
+            <div className="municipalities-progress">
           {municipalities.map((m, idx) =>
             idx >= 5 ? null : (
               <MunicipalityProgress
@@ -101,6 +98,10 @@ const Home = () => {
           )}
           <Button>Sjá öll</Button>
         </div>
+          </div>
+          <CurvedProgressBar progress={progress} />
+        </div>
+
       </section>
       {/* <Button onClick={() => setOpenModal('leaderboard')}>
         Sjá stigatöflu
@@ -109,6 +110,8 @@ const Home = () => {
         isOpen={openModal === "leaderboard"}
         toggle={() => setOpenModal("")}
       />
+      <InfoSection title = "Hvað er kolefnisjöfnun?"
+                   text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, en ein þeirra er að  gróðursetja tré."/>
 
       <section className="chart_section">
         {!emissionTypes || emissionTypes.length === 0 ? null : (

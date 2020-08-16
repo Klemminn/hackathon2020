@@ -10,7 +10,7 @@ const Header = () => {
     <Container className='header-component'>
       <Navbar>
         <div />
-        <img className="logo" alt="Jöfnum okkur" src="/assets/logo-200x200.png" />
+
         <ParticipantHeaderStatus />
       </Navbar>
     </Container>
