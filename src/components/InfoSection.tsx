@@ -10,7 +10,7 @@ type InfoSectionProps = {
 
 const Button = ({ text, title, imagePath, ...rest }: InfoSectionProps) => {
   return (
-    <section className="info_section">
+    <section className="info_section" {...rest}>
       <img alt="Jöfnum okkur" src={imagePath} />
       <h2 className="header_style">{title}</h2>
       <p>{text}</p>
