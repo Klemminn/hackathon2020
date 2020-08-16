@@ -2,5 +2,5 @@ export type Participant = {
   id?: number,
   name: string,
   email: string,
-  trees: number
+  co2Offset: number
 } | null

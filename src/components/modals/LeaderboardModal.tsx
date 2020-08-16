@@ -45,7 +45,7 @@ const LeaderboardModal = ({ ...rest }: LeaderboardModalProps) => {
       setLoading(true)
       try {
         const response = await MunicipalityService.getMunicipalities()
-        municipalityData = response.sort((a: TableRow, b: TableRow) => a.trees - b.trees)
+        municipalityData = response.sort((a: TableRow, b: TableRow) => a.co22Offset - b.co22Offset)
       } catch (e) {
         console.log(e)
       } finally {
@@ -63,8 +63,8 @@ const LeaderboardModal = ({ ...rest }: LeaderboardModalProps) => {
           label: 'Íbúafjöldi'
         },
         {
-          code: 'trees',
-          label: 'Tré'
+          code: 'ton',
+          label: 'Tonn'
         }
       ],
       rows: municipalityData
@@ -76,7 +76,7 @@ const LeaderboardModal = ({ ...rest }: LeaderboardModalProps) => {
       setLoading(true)
       try {
         const response = await ParticipantService.getParticipants()
-        participantData = response.sort((a: TableRow, b: TableRow) => a.trees - b.trees)
+        participantData = response.sort((a: TableRow, b: TableRow) => a.co22Offset - b.co22Offset)
       } catch (e) {
         console.log(e)
       } finally {
@@ -90,8 +90,8 @@ const LeaderboardModal = ({ ...rest }: LeaderboardModalProps) => {
           label: 'Þátttakandi'
         },
         {
-          code: 'trees',
-          label: 'Tré'
+          code: 'ton',
+          label: 'Tonn'
         }
       ],
       rows: participantData

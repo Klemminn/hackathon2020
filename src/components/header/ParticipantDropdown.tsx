@@ -1,7 +1,8 @@
 import React from 'react'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { FaLeaf } from 'react-icons/fa'
 
-import { Button } from 'components'
+import { IconButton } from 'components'
 import { FormatUtils } from 'utils'
 import { Participant } from 'types'
 
@@ -14,7 +15,10 @@ const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) 
   <>
     <UncontrolledDropdown nav inNavbar>
       <DropdownToggle nav>
-        <Button>{`${FormatUtils.getFirstName((participant?.name || ''))} - ${FormatUtils.thousandSeparator(participant?.trees || 0)} ${((participant && participant?.trees % 10 === 1) && (participant && participant?.trees !== 11)) ? 'tré' : 'trjám'} plantað`}</Button>
+        <IconButton
+          text={`${FormatUtils.getFirstName((participant?.name || ''))} - ${FormatUtils.thousandSeparator(participant?.co2Offset || 0)} tonn jöfnuð`}
+          icon={FaLeaf}
+        />
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem>

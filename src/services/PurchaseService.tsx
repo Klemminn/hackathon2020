@@ -1,8 +1,8 @@
 import connector from './connector'
 
 class PurchaseService {
-  static async getTreesPlanted () {
-    const { data } = await connector.get('/planted/')
+  static async getTotalOffset () {
+    const { data } = await connector.get('/totalOffset/')
     return data
   }
 }
