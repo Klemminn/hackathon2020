@@ -1,18 +1,22 @@
 import connector from './connector'
 
 let totalCo2: number
+let co2EmissionTypes: any
 class Co2EmissionService {
   static async getCo2EmissionTypes () {
+    if (co2EmissionTypes) {
+      return co2EmissionTypes
+    }
     const { data } = await connector.get('/co2emissiontypes/')
-    return data
+    co2EmissionTypes = data
+    return co2EmissionTypes
   }
 
   static async getTotalCo2 () {
-    if (totalCo2) {
-      return totalCo2
+    if (!totalCo2) {
+      const { data } = await connector.get('/totalCo2/')
+      totalCo2 = data
     }
-    const response = await this.getCo2EmissionTypes()
-    totalCo2 = response.reduce((a: number, b: any) => a + b.co2, 0)
     return totalCo2
   }
 }

@@ -1,6 +1,6 @@
 export type Municipality = {
   id: number,
   name: string,
-  population: string,
+  population: number,
   co2Offset: number
 }

@@ -4,7 +4,7 @@ class FormatUtils {
   }
 
   static thousandSeparator (num: number) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    return num.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   }
 }
 

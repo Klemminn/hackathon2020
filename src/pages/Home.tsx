@@ -4,16 +4,21 @@ import { Co2EmissionService, PurchaseService, MunicipalityService } from 'servic
 import { Municipality } from 'types'
 
 import './Home.scss'
+import MunicipalityProgress from 'components/MunicipalityProgress'
 
 const Home = () => {
   const [openModal, setOpenModal] = useState('')
   const [totalOffset, setTotalOffset] = useState(0)
+  const [totalCo2, setTotalCo2] = useState(0)
+  const [totalPopulation, setTotalPopulation] = useState(0)
   const [progress, setProgress] = useState(0)
   const [municipalities, setMunicipalities]: [Municipality[], any] = useState([])
 
   useEffect(() => {
     getProgress()
     getMunicipalities()
+    getTotalPopulation()
+    getTotalCo2()
     // eslint-disable-next-line
   }, [])
 
@@ -28,10 +33,20 @@ const Home = () => {
     setProgress(status)
   }
 
+  const getTotalPopulation = async () => {
+    const population = await MunicipalityService.getTotalPopulation()
+    setTotalPopulation(population)
+  }
+
+  const getTotalCo2 = async () => {
+    const co2 = await Co2EmissionService.getTotalCo2()
+    setTotalCo2(co2)
+  }
+
   const getMunicipalities = async () => {
     try {
       const response = await MunicipalityService.getMunicipalities()
-      response.sort((a: Municipality, b: Municipality) => a.co2Offset - b.co2Offset)
+      response.sort((a: Municipality, b: Municipality) => (b.co2Offset / a.population) - (a.co2Offset / b.population))
       setMunicipalities(response)
     } catch (e) {
       console.log(e)
@@ -50,7 +65,18 @@ const Home = () => {
             progress={progress}
           />
         </div>
-        <div><LineProgressBar progress={1 / 2} /></div>
+        <div className='municipalities-progress'>
+          {municipalities.map((m, idx) => (
+            idx >= 5 ? null : (
+              <MunicipalityProgress
+                key={m.id}
+                municipality={m}
+                totalPopulation={totalPopulation}
+                totalCo2={totalCo2}
+              />
+            )
+          ))}
+        </div>
       </section>
       {/* <Button onClick={() => setOpenModal('leaderboard')}>
         Sjá stigatöflu

@@ -1,0 +1,16 @@
+.municipality-progress-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .name {
+    color: white;
+    text-shadow: 0 0 0.2em black;
+    margin-bottom: -0.8em;
+  }
+
+  .progressbar-container {
+    margin-top: 1em;
+  }
+}
