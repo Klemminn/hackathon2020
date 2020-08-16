@@ -1,6 +1,6 @@
 import connector from './connector'
 
-let totalCo2: number
+let totalCo2: any
 let co2EmissionTypes: any
 class Co2EmissionService {
   static async getCo2EmissionTypes () {
@@ -12,7 +12,7 @@ class Co2EmissionService {
     return co2EmissionTypes
   }
 
-  static async getTotalCo2 () {
+  static async getTotalCo2  (){
     if (!totalCo2) {
       const { data } = await connector.get('/totalCo2/')
       totalCo2 = data

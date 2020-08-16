@@ -28,7 +28,7 @@
         display: flex;
         flex-flow: column nowrap;
         margin: auto;
-        margin-top: 5vh;
+        margin-top: 18vh;
         position: absolute;
         width: 20%;
         .logo {
@@ -86,7 +86,18 @@
       flex-direction: column;
     }
   }
+  .chart_section{
+    margin:auto;
+    width:70vw;
+    height:100vw;
+    padding:5vw;
 
+    .chart_container{
+      .header_style{
+        text-align:center;
+      }
+    }
+  }
 
 }
 

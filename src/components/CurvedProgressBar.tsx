@@ -11,7 +11,7 @@ const CurvedProgressBar = ({ ...rest }: ProgressBarProps) => {
 
   const trailColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--progress-bar-trail')
-  console.log(trailColor, fillColor)
+
   return (
     <ProgressBar.SemiCircle
       options={{

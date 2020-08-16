@@ -4,15 +4,18 @@
     height: 0;
     z-index: 1;
 
+    .logo{
+      position:absolute;
+      width:100px;
+      height: 100px;
+      top: 0em;
+      left: 0em;
+    }
     button {
       margin-top: 1em;
     }
 
-    .navbar-brand {
-      img {
-        height: 5em;
-      }
-    }
+   
     .nav-item {
       display: flex;
 
