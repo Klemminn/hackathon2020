@@ -22,7 +22,7 @@ const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) 
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem>
-          Skógurinn minn
+          Þátttaka
         </DropdownItem>
         <DropdownItem divider />
         <DropdownItem onClick={logout}>

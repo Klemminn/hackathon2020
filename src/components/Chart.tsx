@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Bar, HorizontalBar } from "react-chartjs-2";
+import { HorizontalBar } from "react-chartjs-2";
 
 type ChartProps = {
   emissionData: any[];
@@ -40,8 +40,6 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
  
   var sumTotal = emissionData.map(x => x.co2).reduce((x, y) => x + y);
   emissionData.length = 6;
-
-  var xAxisLabels = emissionData.map(x=> x.name);
 
   let chartData = {
     datasets: emissionData.map(x => {

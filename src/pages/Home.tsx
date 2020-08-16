@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {
-  CurvedProgressBar,
-  Chart,
-  Co2Counter,
-  LeaderboardModal
-} from "components";
-import {
-  Co2EmissionService,
-  PurchaseService,
-  MunicipalityService
-} from "services";
-import { Municipality } from "types";
+import React, { useState, useEffect } from 'react'
 
-import "./Home.scss";
-import MunicipalityProgress from "components/MunicipalityProgress";
+import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, Chart } from 'components'
+import { Co2EmissionService, PurchaseService, MunicipalityService } from 'services'
+import { Municipality } from 'types'
+
+import './Home.scss'
 
 const Home = () => {
   const [openModal, setOpenModal] = useState("");
@@ -108,6 +99,7 @@ const Home = () => {
               />
             )
           )}
+          <Button>Sjá öll</Button>
         </div>
       </section>
       {/* <Button onClick={() => setOpenModal('leaderboard')}>
@@ -119,7 +111,7 @@ const Home = () => {
       />
 
       <section className="chart_section">
-        {!emissionTypes || emissionTypes.length == 0 ? null : (
+        {!emissionTypes || emissionTypes.length === 0 ? null : (
           <Chart emissionData={emissionTypes} />
         )}
       </section>
