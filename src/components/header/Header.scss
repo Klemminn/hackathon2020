@@ -5,7 +5,7 @@
     height: 0;
     z-index: 1;
 
-   
+    width: 96vw;
     button {
       margin-top: 1em;
      
@@ -17,6 +17,8 @@
      
       .button-component {
         background-color: var(--green);
+       
+
       }
     }
   }
