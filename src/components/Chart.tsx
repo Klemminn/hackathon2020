@@ -24,7 +24,6 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
     "#CAE5FA",
     "#84F0C5"
   ];
-  var colorsBuffer = colors.map(x=> x);
   const charTitle = "Losun CO2 í tonnum";
   const chartTooltipBackground = getComputedStyle(
     document.documentElement
@@ -37,17 +36,27 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
   emissionData = emissionData.sort((x, y) => {
     return y.co2 - x.co2;
   });
- 
+
   var sumTotal = emissionData.map(x => x.co2).reduce((x, y) => x + y);
   emissionData.length = 6;
-
+  const maxTooltipCategories = colors.length;
+  //Prevent tooltip from becoming too large
+  emissionData.map(x => {
+    if (x.subtypes.length <= maxTooltipCategories || !x.subtypes) return;
+    var lastEntryValue = x.subtypes[maxTooltipCategories].co2;
+    x.subtypes.length = maxTooltipCategories;
+    console.log(x.subtypes)
+    console.log(typeof x.subtypes)
+    x.subtypes[maxTooltipCategories] = {name:"Aðrir flokkar minna en", co2: lastEntryValue};
+  });
+  var colorsIdx = 0;
   let chartData = {
     datasets: emissionData.map(x => {
       return {
         data: [x.co2],
-        label:x.name,
-        subgroups : x.subtypes.sort((z:any, y:any) => y.co2 - z.co2),
-        backgroundColor: colorsBuffer.length > 0 ? colorsBuffer.pop() : (colorsBuffer = colors.map(x=> x)).pop(),
+        label: x.name,
+        subgroups: x.subtypes.sort((z: any, y: any) => y.co2 - z.co2),
+        backgroundColor: colors[colorsIdx++],
         hoverBorderColor: chartTooltipBackground,
         hoverBorderWidth: 1.5
       };
@@ -57,7 +66,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
 
   let options = {
     animation: {
-      duation: 0
+      duation: 2000
     },
     legend: {
       display: false
@@ -84,9 +93,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
       ],
       yAxes: [
         {
-       
-  
-          type:"category",
+          type: "category",
           gridLines: {
             zeroLineWidth: 0,
             drawOnChartArea: false,
@@ -102,41 +109,38 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
     },
     tooltips: {
       mode: "nearest",
-      axis: 'y',
-      intersect:false,
+      axis: "y",
+      intersect: false,
       backgroundColor: chartTooltipBackground,
       bodyFontColor: chartTooltipColor,
       titleFontColor: chartTooltipColor,
-      titleFontSize:20,
-      bodyFontSize:14,
-      bodySpacing:3,
-      titleAlign:"center",
+      titleFontSize: 20,
+      bodyFontSize: 14,
+      bodySpacing: 3,
+      titleAlign: "center",
       callbacks: {
         title: function(tooltipItem: any, data: any) {
-          console.log(tooltipItem, data)
+          console.log(tooltipItem, data);
           tooltipItem = tooltipItem[0];
-          return data.datasets[tooltipItem.datasetIndex].label;;
+          return data.datasets[tooltipItem.datasetIndex].label;
         },
         label: function(tooltipItem: any, data: any) {
-          var label = data.datasets[tooltipItem.datasetIndex].subgroups
-              .map( (x: any) => {
-                var percentage = Math.round(
-                  (x.co2 / sumTotal) *
-                    1000
-                ) / 10;
-                  return x.name + ": " + percentage + "%"
-              });
+          var label = data.datasets[tooltipItem.datasetIndex].subgroups.map(
+            (x: any) => {
+              var percentage = Math.round((x.co2 / sumTotal) * 1000) / 10;
+              return x.name + ": " + percentage + "%";
+            }
+          );
 
-         
           return label;
         }
       }
     }
   };
-  console.log(chartData.datasets);
+
   return (
     <div className="chart_container">
-        <h2 className = "header_style">Hvar losum við mest?</h2>
+      <h2 className="header_style">Hvar losum við mest?</h2>
       <HorizontalBar data={chartData} options={options} />
     </div>
   );

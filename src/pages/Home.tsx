@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
-import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, PurchaseModal } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService } from 'services'
 import { Municipality } from 'types'
 
@@ -135,6 +134,13 @@ const Home = () => {
       <section className="chart_section">
         {!emissionTypes || emissionTypes.length === 0 ? null : (
           <Chart emissionData={emissionTypes} />
+        )}
+       
+      </section>
+      <section className="chart_section doughnut_chart">
+
+        {!emissionTypes || emissionTypes.length === 0 ? null : (
+          <DoughnutChart emissionData={emissionTypes} />
         )}
       </section>
       <LeaderboardModal

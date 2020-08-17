@@ -107,18 +107,36 @@
     }
   }
 
-  @media (min-width: 601px) {
+  @media (min-width: 791px) {
     .chart_section {
       width: 70vw;
+      padding: 5vw;
     }
+  }
+
+  @media (max-width: 790px) {
+    .chart_section {
+      width: 100%;
+      padding:5px;
+    }
+  }
+
+  .doughnut_chart{
+    width: 90vw;
+
   }
   .chart_section {
     margin: auto;
 
-    height: 100vw;
-    padding: 5vw;
+    display:flex;
+    flex-flow:column nowrap;
+    height: 85vh;
+
+
 
     .chart_container {
+      flex:1;
+      width:100%;
       .header_style {
         text-align: center;
         margin-bottom:1em;
