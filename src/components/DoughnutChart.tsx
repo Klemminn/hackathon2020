@@ -8,7 +8,7 @@ type DoughtnutChartProps = {
 };
 
 const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
-  console.log("Creating chart");
+
   const colors = [
     "#F0DEC2",
     "#FACAD0",
@@ -87,7 +87,7 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
       titleAlign: "center",
       callbacks: {
         title: function(tooltipItem: any, data: any) {
-          console.log(tooltipItem, data);
+
           tooltipItem = tooltipItem[0];
           return data.datasets[tooltipItem.datasetIndex].label;
         },

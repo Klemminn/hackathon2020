@@ -8,7 +8,7 @@ type ChartProps = {
 };
 
 const Chart = ({ emissionData, ...rest }: ChartProps) => {
-  console.log("Creating chart");
+
   const colors = [
     "#F0DEC2",
     "#FACAD0",
@@ -45,8 +45,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
     if (x.subtypes.length <= maxTooltipCategories || !x.subtypes) return;
     var lastEntryValue = x.subtypes[maxTooltipCategories].co2;
     x.subtypes.length = maxTooltipCategories;
-    console.log(x.subtypes)
-    console.log(typeof x.subtypes)
+
     x.subtypes[maxTooltipCategories] = {name:"Aðrir flokkar minna en", co2: lastEntryValue};
   });
   var colorsIdx = 0;
@@ -120,7 +119,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
       titleAlign: "center",
       callbacks: {
         title: function(tooltipItem: any, data: any) {
-          console.log(tooltipItem, data);
+        
           tooltipItem = tooltipItem[0];
           return data.datasets[tooltipItem.datasetIndex].label;
         },

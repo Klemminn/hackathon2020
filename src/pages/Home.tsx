@@ -38,7 +38,7 @@ const Home = () => {
     let types = await Co2EmissionService.getCo2EmissionTypes().catch(error =>
       console.log(error)
     );
-    console.log(types);
+
     setEmissionTypes(types);
   };
 
