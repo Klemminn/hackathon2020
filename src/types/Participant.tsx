@@ -3,5 +3,6 @@ export type Participant = {
   name: string,
   email: string,
   co2Offset: number,
-  defaultMunicipality?: number
+  defaultMunicipality?: number,
+  title?:string
 } | null

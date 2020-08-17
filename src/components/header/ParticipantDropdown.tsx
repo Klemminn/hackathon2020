@@ -16,7 +16,8 @@ const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) 
     <UncontrolledDropdown nav inNavbar>
       <DropdownToggle nav>
         <IconButton
-          text={`${FormatUtils.getFirstName((participant?.name || ''))} - ${FormatUtils.thousandSeparator(participant?.co2Offset || 0)} tonn jöfnuð`}
+          text={FormatUtils.getFirstName( participant ? participant.name : "")}
+          subtext = {(participant?.title || "") + "\n" +  FormatUtils.thousandSeparator(participant?.co2Offset || 0) +  " tonn jöfnuð"}
           icon={FaLeaf}
         />
       </DropdownToggle>
