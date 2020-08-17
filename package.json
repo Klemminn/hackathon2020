@@ -14,7 +14,9 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
+    "@types/react-select": "^3.0.18",
     "@types/reactstrap": "^8.5.0",
+    "@types/yup": "^0.29.5",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
@@ -24,12 +26,16 @@
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^3.27.0",
     "react-icons": "^3.10.0",
     "react-progressbar.js": "^0.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-select": "^3.1.0",
+    "react-switch": "^5.0.1",
     "reactstrap": "^8.5.1",
-    "typescript": "~3.8.0"
+    "typescript": "~3.8.0",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "cross-env HTTPS=true PORT=3000 REACT_APP_ENV=local react-scripts start",

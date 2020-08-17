@@ -1,0 +1,26 @@
+.input-component {
+  // margin-top: 0.8em;
+
+  label {
+    font-weight: 500;
+  }
+
+  .error {
+    color: var(--red-dark);
+    font-weight: bold;
+  }
+
+  &.list-group-selector {
+    .list-group-item {
+      cursor: pointer;
+    }
+
+    .item-label {
+      font-weight: 600;
+    }
+    
+    .item-description {
+      margin-top: 0.8em;
+    }
+  }
+}
