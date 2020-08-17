@@ -63,7 +63,7 @@ const UserHeaderStatus = () => {
   const UserState = () => {
     if (loading) {
       return null
-    } else if (!participant) {
+    } else if (!participant?.name) {
       return <FacebookLoginButton onClick={facebookLogin} />
     }
     return <ParticipantDropdown
