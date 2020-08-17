@@ -18,9 +18,13 @@ const Home = () => {
     []
   );
 
-  useEffect(() => {
+  const getAllProgress = () => {
     getProgress();
     getMunicipalities();
+  }
+
+  useEffect(() => {
+    getAllProgress();
     getTotalPopulation();
     getTotalCo2();
     getEmissionTypes();
@@ -147,6 +151,7 @@ const Home = () => {
         offsetAgents={offsetAgents}
         emissionPerPerson={totalCo2 / totalPopulation}
         municipalities={municipalities}
+        onSubmit={() => getAllProgress()}
       />
     </div>
   );

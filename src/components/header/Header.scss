@@ -1,5 +1,7 @@
 .header-component {
   position:fixed;
+  z-index: 2;
+
   .navbar {
     padding: 0 !important;
     height: 0;

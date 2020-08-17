@@ -4,6 +4,8 @@ import { Button as BootstrapButton } from 'reactstrap'
 
 import { Spinner } from 'components'
 
+import './Button.scss'
+
 type ButtonProps = {
   children: any,
   className?: string,

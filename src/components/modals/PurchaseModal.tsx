@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Label, Progress } from 'reactstrap'
 import { useStateLink } from '@hookstate/core'
 
-import { Modal, Form, Row, Col, FormInput, FormSearchableSelect, FormTextarea, OffsetAgentSelector, FormSwitch } from 'components'
-import { OffsetAgent, Participant } from 'types'
-import { FormatUtils } from 'utils'
-import { ParticipantState } from 'states'
+import { Modal, Form, Row, Col, FormInput, FormSearchableSelect, FormTextarea, OffsetAgentSelector, FormSwitch, Button } from 'components'
+import { OffsetAgent, Participant, Municipality } from 'types'
+import { FormatUtils, FormUtils, ToastUtils } from 'utils'
+import { ParticipantState, updateCo2 } from 'states'
+import { PurchaseService } from 'services'
 
 import * as yup from 'yup'
 
@@ -14,6 +15,8 @@ import './PurchaseModal.scss'
 type PurchaseModalProps = {
   offsetAgents: OffsetAgent[],
   emissionPerPerson: number,
+  municipalities: Municipality[],
+  onSubmit(): void,
   [rest:string]: any
 }
 
@@ -21,19 +24,25 @@ const formName = 'purchaseForm'
 const schema = yup.object().shape({
   participantName: yup.string()
     .required('Þú verður að skrá nafn kaupanda'),
-  participantEmail: yup.string().email()
+  participantEmail: yup.string().email('Netfang ekki á réttu formi')
     .required('Þú verður að skrá netfang kaupanda'),
-  quantity: yup.number().required('Þú verður að skrá magn').min(1, 'Ekki er hægt að kaupa minna en 1stk')
-
+  quantity: yup.number().required('Þú verður að skrá magn').min(1, 'Ekki er hægt að kaupa minna en 1stk'),
+  receiverEmail: yup.string().email('Netfang ekki á réttu formi').when('gift', (gift: boolean, schema: any) => {
+    return gift ? schema.required('Þú verður að skrá e-mail viðtakanda') : schema
+  }),
+  receiverName: yup.string().when('gift', (gift: boolean, schema: any) => {
+    return gift ? schema.required('Þú verður að skrá nafn viðtakanda') : schema
+  })
 })
 
 let previuosProgress = 0
-const PurchaseModal = ({ offsetAgents, emissionPerPerson, ...rest }: PurchaseModalProps) => {
-  console.log(emissionPerPerson)
+const PurchaseModal = ({ offsetAgents, emissionPerPerson, municipalities, onSubmit, ...rest }: PurchaseModalProps) => {
   const [selectedOffsetAgent, setSelectedOffsetAgent]: [OffsetAgent, any] = useState(offsetAgents[0])
   const [quantity, setQuantity]: [number, any] = useState(1)
   const participant: Participant = useStateLink(ParticipantState).get()
   const [gift, setGift] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   if (participant.co2Offset) {
     previuosProgress = 100 * participant.co2Offset / emissionPerPerson
   }
@@ -47,8 +56,27 @@ const PurchaseModal = ({ offsetAgents, emissionPerPerson, ...rest }: PurchaseMod
     setSelectedOffsetAgent(offsetAgents[0])
   }, [offsetAgents])
 
-  const submit = (data: any) => {
-    console.log(data)
+  const submit = async (data: any) => {
+    setLoading(true)
+    try {
+      const body = {
+        ...data,
+        costPerItem: selectedOffsetAgent.costPerItem,
+        totalCo2: selectedOffsetAgent.co2PerItem * quantity,
+        offsetAgent: selectedOffsetAgent.id
+      }
+      PurchaseService.createPurchase(body)
+      setTimeout(() => {
+        onSubmit()
+        ToastUtils.success('😃 Snilld! Takk fyrir að kolefnisjafna')
+        setLoading(false)
+        participant && updateCo2()
+        rest.toggle()
+      }, 1000)
+    } catch (e) {
+      console.log(e)
+      setLoading(false)
+    }
   }
 
   const setAgent = (agent: OffsetAgent) => {
@@ -146,7 +174,10 @@ const PurchaseModal = ({ offsetAgents, emissionPerPerson, ...rest }: PurchaseMod
               name='municipality'
               label='Sveitarfélag'
               placeholder='Valkvæmt: Veldu sveitarfélag'
-              options={[]}
+              options={municipalities.map((m) => ({
+                label: m.name,
+                value: m.id
+              }))}
             />
           </Col>
           <Col md={6}>
@@ -187,6 +218,14 @@ const PurchaseModal = ({ offsetAgents, emissionPerPerson, ...rest }: PurchaseMod
           </Row>
         </div>
       </Form>
+      <div className='confirm'>
+        <Button
+          onClick={() => FormUtils.submitForm(formName)}
+          loading={loading}
+        >
+          Staðfesta
+        </Button>
+      </div>
     </Modal>
   )
 }

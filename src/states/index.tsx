@@ -1,4 +1,5 @@
 export {
   ParticipantState,
-  setParticipant
+  setParticipant,
+  updateCo2
 } from './ParticipantState'

@@ -1,0 +1,10 @@
+.button-component {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--green);
+
+  .spinner-component {
+    margin-right: 0.5em;
+  }
+}
