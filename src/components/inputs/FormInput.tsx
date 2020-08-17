@@ -7,7 +7,7 @@ import './Inputs.scss'
 type FormInputProps = {
   name: string,
   label: string,
-  onChange?(arg0: any): void,
+  onChange?(value: any): void,
   [rest:string]: any
 }
 

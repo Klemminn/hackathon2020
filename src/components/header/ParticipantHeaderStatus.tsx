@@ -1,13 +1,15 @@
 /* global FB */
 import React, { useEffect, useState } from 'react'
+import { useStateLink } from '@hookstate/core'
 
 import { FacebookLoginButton, ParticipantDropdown } from 'components'
 import { ParticipantService } from 'services'
 import { Participant } from 'types'
+import { ParticipantState, setParticipant } from 'states'
 
 const UserHeaderStatus = () => {
   const [loading, setLoading] = useState(false)
-  const [participant, setParticipant]: [Participant, any] = useState(null)
+  const participant: Participant = useStateLink(ParticipantState).get()
 
   const checkFacebookStatus = () => {
     setLoading(true)
@@ -29,7 +31,7 @@ const UserHeaderStatus = () => {
 
   const facebookLogout = () => {
     FB.logout(() => {
-      setParticipant(null)
+      setParticipant()
     })
   }
 
@@ -45,7 +47,7 @@ const UserHeaderStatus = () => {
       try {
         if (!response.error) {
           const currentParticipant = await ParticipantService.getParticipant(response)
-          setParticipant(currentParticipant)
+          setParticipant({ ...response, ...currentParticipant })
         }
       } finally {
         setLoading(false)

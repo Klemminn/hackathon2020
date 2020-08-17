@@ -9,7 +9,7 @@ type FormSelectProps = {
   label: string,
   name: string,
   options: any,
-  onChange(arg0: any): void,
+  onChange(value: any): void,
   [rest:string]: any
 }
 

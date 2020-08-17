@@ -16,13 +16,14 @@ type MunicipalityProgressProps = {
 const MunicipalityProgress = ({ municipality, totalPopulation, totalCo2, ...rest }: MunicipalityProgressProps) => {
   const co2PerPerson = totalCo2 / totalPopulation
   const progress = (100 * municipality.co2Offset / (co2PerPerson * municipality.population))
+  const progressString = `${FormatUtils.round(progress, 1)}%`
 
   return (
     <div className='municipality-progress-component'>
       <div className='name'>{municipality.name}</div>
       <Progress multi>
-        <Progress className='offset' bar value={progress} />
-        <Progress className='remaining' bar value={100 - progress}>{FormatUtils.round(progress, 1)}%</Progress>
+        <Progress className='offset' bar value={progress}>{progress >= 50 ? progressString : ''}</Progress>
+        <Progress className='remaining' bar value={100 - progress}>{progress < 50 ? progressString : ''}</Progress>
       </Progress>
     </div>
   )

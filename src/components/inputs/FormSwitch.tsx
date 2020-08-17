@@ -7,8 +7,8 @@ import { Label } from 'reactstrap'
 type FormSwitchProps = {
   label: string,
   name: string,
-  defaultValue: boolean,
-  onChange(arg0: any): void,
+  defaultValue?: boolean,
+  onChange?(value: any): void,
   [rest:string]: any
 }
 

@@ -7,7 +7,7 @@ type FormSearchableSelectProps = {
   defaultValue?: any,
   label: string,
   name: string,
-  onChange?(arg0: any): void,
+  onChange?(value: any): void,
   [rest:string]: any
 }
 

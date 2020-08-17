@@ -1,0 +1,30 @@
+.offset-agent-selector-component {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 1em 2em 0;
+
+  .tile {
+    height: 6em;
+    display: flex;
+    border: 1px solid var(--green);
+    border-radius: 1em;
+    padding: 1em 2em;
+    cursor: pointer;
+
+    &.selected {
+      background-color: var(--green-soft);
+    }
+
+    img {
+      height: 4em;
+    }
+
+    .info {
+      margin-left: 1em;
+
+      .name {
+        font-weight: 500;
+      }
+    }
+  }
+}

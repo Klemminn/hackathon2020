@@ -16,7 +16,10 @@ $facebook-blue: #4267B2;
   --chart-tooltip-background: #eee;
   --white: #{$white};
   --green: #{$green};
+  --green-soft: #{lighten($green, 60%)};
   --facebook-blue: #{$facebook-blue};
+
+  --grey-soft: #cccccc;
 
   --blue: #{$blue};
 

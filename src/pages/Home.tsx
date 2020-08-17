@@ -145,6 +145,8 @@ const Home = () => {
         isOpen={openModal === "purchase"}
         toggle={() => setOpenModal("")}
         offsetAgents={offsetAgents}
+        emissionPerPerson={totalCo2 / totalPopulation}
+        municipalities={municipalities}
       />
     </div>
   );
