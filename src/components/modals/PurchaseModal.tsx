@@ -120,7 +120,7 @@ const PurchaseModal = ({ offsetAgents, emissionPerPerson, municipalities, onSubm
               />
               <div className='mt-2'>
                 <Label className='mr-2'>Kolefnisjöfnun:</Label>
-                {FormatUtils.round(selectedOffsetAgent?.co2PerItem * quantity, 1)}tonn af CO2
+                {FormatUtils.round(selectedOffsetAgent?.co2PerItem * quantity, 1)} tonn af CO2
               </div>
             </Col>
             <Col md={3} className='text-right'>

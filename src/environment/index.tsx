@@ -11,7 +11,7 @@ const local: EnvParams = {
 }
 
 //const env = process.env.REACT_APP_ENV
- const env = 'production';
+const env = 'production';
 
 const envParams: EnvParams = (
   env === 'production'
