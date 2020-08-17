@@ -82,7 +82,7 @@ const Home = () => {
       );
       response.sort(
         (a: Municipality, b: Municipality) =>
-          b.co2Offset / a.population - a.co2Offset / b.population
+          a.co2Offset / a.population - b.co2Offset / b.population
       );
       setMunicipalities(response);
     } catch (e) {
