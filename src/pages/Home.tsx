@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import ReactTooltip from 'react-tooltip'
+
 import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService } from 'services'
 import { Municipality } from 'types'
+import { FormatUtils } from 'utils'
 
 import './Home.scss'
 
@@ -95,6 +98,12 @@ const Home = () => {
       <img className="logo" alt="Jöfnum okkur" src="/assets/logo-200x200.png" />
       <section className="intro_section">
         <div className="counter_and_logo_outer_container">
+          <div
+            className='tagline'
+            data-tip={`Samkvæmt tölum Hagstofunnar er heildar útblástur frá heimilum landsmanna ${FormatUtils.thousandSeparator(totalCo2)} tonn, eða ${FormatUtils.round(totalCo2 / totalPopulation, 1)} tonn á hvern einstakling.`}
+          >
+            Saman ætlum við að kolefnisjafna heimili landsins
+          </div>
           <div className="counter_and_logo_container">
             <Co2Counter className="co2counter" totalOffset={totalOffset} />
             <Button
@@ -159,6 +168,7 @@ const Home = () => {
         municipalities={municipalities}
         onSubmit={() => getAllProgress()}
       />
+      <ReactTooltip />
     </div>
   );
 };

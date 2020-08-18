@@ -13,7 +13,7 @@ class Co2EmissionService {
 
   static async getTotalCo2 () {
     if (!totalCo2) {
-      const { data } = await connector.get('/totalCo2/')
+      const { data } = await connector.get('/homesTotalCo2/')
       totalCo2 = data
     }
     return totalCo2

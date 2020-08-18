@@ -13,6 +13,7 @@ type MunicipalityProgressProps = {
   [rest:string]: any
 }
 
+const progressCutoff = 20
 const MunicipalityProgress = ({ municipality, totalPopulation, totalCo2, ...rest }: MunicipalityProgressProps) => {
   const co2PerPerson = totalCo2 / totalPopulation
   const progress = (100 * municipality.co2Offset / (co2PerPerson * municipality.population))
@@ -22,8 +23,8 @@ const MunicipalityProgress = ({ municipality, totalPopulation, totalCo2, ...rest
     <div className='municipality-progress-component'>
       <div className='name'>{municipality.name}</div>
       <Progress multi>
-        <Progress className='offset' bar value={progress}>{progress >= 50 ? progressString : ''}</Progress>
-        <Progress className='remaining' bar value={100 - progress}>{progress < 50 ? progressString : ''}</Progress>
+        <Progress className='offset' bar value={progress}>{progress >= progressCutoff ? progressString : ''}</Progress>
+        <Progress className='remaining' bar value={100 - progress}>{progress < progressCutoff ? progressString : ''}</Progress>
       </Progress>
     </div>
   )

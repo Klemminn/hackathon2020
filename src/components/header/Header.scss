@@ -20,7 +20,12 @@
       .button-component {
         background-color: var(--green);
         white-space: pre;
+        text-align: left;
+        width: 12em;
 
+        svg {
+          margin-right: 1em !important;
+        }
       }
     }
   }

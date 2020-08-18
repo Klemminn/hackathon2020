@@ -3,6 +3,20 @@
   margin:1em;
 }
 .home-page {
+  .tagline {
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-shadow: 0 0 0.2em #000;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: -2em;
+    font-size: 1.5em;
+    filter: drop-shadow(2px 4px 10px black);
+    
+  }
+
   .logo {
     position: absolute;
     width: 100px;

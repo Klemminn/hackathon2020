@@ -54,12 +54,10 @@ const UserHeaderStatus = () => {
     setTotalCo2(co2);
   };
 
-
   const checkFacebookStatus = () => {
     setLoading(true)
     if (typeof FB !== 'undefined') {
       FB.getLoginStatus((response: any) => {
-        console.log('FB get login status response', response)
         if (response.status === 'connected') {
           getFacebookInfo()
         } else {
@@ -89,7 +87,6 @@ const UserHeaderStatus = () => {
 
   const getFacebookInfo = () => {
     FB.api('/me', { fields: 'name, email' }, async (response: any) => {
-      console.log('FB /me response', response)
       try {
         if (!response.error) {
           const currentParticipant = await ParticipantService.getParticipant(response)
@@ -113,18 +110,18 @@ const UserHeaderStatus = () => {
       return <FacebookLoginButton onClick={facebookLogin} />
     }
     return (
-    <div>
-      <ParticipantDropdown
-      participant={participant}
-      logout={facebookLogout}
-      myPurchases={openPurchasesModal}
-      />
-      <MyPurchasesModal
-        isOpen={openModal === "my-purchases"}
-        toggle={() => setOpenModal("")}
-        emissionPerPerson={totalCo2 / totalPopulation}
-        municipalities={municipalities}
-      />
+      <div>
+        <ParticipantDropdown
+          participant={participant}
+          logout={facebookLogout}
+          myPurchases={openPurchasesModal}
+        />
+        <MyPurchasesModal
+          isOpen={openModal === "my-purchases"}
+          toggle={() => setOpenModal("")}
+          emissionPerPerson={totalCo2 / totalPopulation}
+          municipalities={municipalities}
+        />
       </div>
     )
   }

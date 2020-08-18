@@ -14,7 +14,7 @@ type MyPurchasesModalProps = {
   [rest: string]: any;
 };
 
-let previuosProgress = 0;
+let progress = 0;
 const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps) => {
   const progressBarDuration = 2500;
 
@@ -22,7 +22,7 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
   const participant: Participant = useStateLink(ParticipantState).get();
 
   if (participant.co2Offset) {
-    previuosProgress = (participant.co2Offset) / emissionPerPerson;
+    progress = (participant.co2Offset) / emissionPerPerson;
   }
 
 
@@ -49,14 +49,14 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
 
 
   var trees = [];
-  for (var i = 0; i < treeCount; i++)
+  for (var i = 0; i < Math.min(treeCount, 1000); i++)
     trees.push(<img src='/assets/tree.png' key = {i} style={createNudgeTreeStyle()} alt="Tré" className="tree-image" />);
   const progressBarFillColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--green')
 
   const progressBarTrailColor = getComputedStyle(document.documentElement)
     .getPropertyValue('--progress-bar-trail')
-  var previousPercentage = FormatUtils.round(previuosProgress * 100, 2);
+  var percentage = FormatUtils.round(progress * 100, 2);
   return (
     <Modal
       className="my-purchases-modal-component"
@@ -69,7 +69,7 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
 
         <div className="progress-container">
           <h2 className="participant_title">{participant.title}</h2>
-          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að gróðursetja {treeCount} tré {participant.co2Offset > 0 ?  "og kolefnisjafna sem nemur " + previousPercentage + "%" + " af kolefnislosun meðal Íslendingsins" : ""}</p>
+          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að kolefnisjafna á við {FormatUtils.thousandSeparator(treeCount)} tré {participant.co2Offset > 0 ?  " sem nemur " + percentage + "% af árlegum heimilishluta kolefnislosunar meðal Íslendingsins" : ""}</p>
           {participant.co2Offset > 0 ?
             <ProgressBar.Line
               options={{
@@ -79,8 +79,8 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
                 duration: progressBarDuration,
 
               }}
-              progress={Math.min(previuosProgress, 1)}
-              text={previousPercentage+ "%"}
+              progress={Math.min(progress, 1)}
+              text={percentage+ "%"}
               initialAnimate={true}
             /> : null}
           {participant.co2Offset === 0 ? <p className = "click_on_frontpage_text">Smelltu á Jafnaðu þig á forsíðunni til að byrja að kolefnisjafna strax í dag!</p> : ""}
