@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-import { Button, CurvedProgressBar, Co2Counter, MunicipalitiesModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, ConfirmedModal, PurchaseModal, Row, Col } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, MunicipalityProgress, InfoSection, Chart, DoughnutChart, ConfirmedModal, MunicipalitiesModal,  PurchaseModal } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService, ParticipantService } from 'services'
 import { Municipality, NewPurchase, LeaderBoardParticipant } from 'types'
 import { FormatUtils } from 'utils'
@@ -153,43 +153,57 @@ const Home = () => {
         </div>
 
       </section>
-      <Row className='participants'>
-        <Col md={6} className='leaderboard'>
-          <div className='title'>Öflugustu þátttakendur</div>
-          {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
-            <Row className='purchase' key={index}>
-              <Col md={6} className='participant'>{p.name}</Col>
-              <Col md={6} className='co2'>{FormatUtils.thousandSeparator(Math.round((p.totalCo2 * 10) / 10))} tonn</Col>
-            </Row>
-          ))}
-        </Col>
-        <Col md={6} className='newest'>
-          <div className='title'>Nýjustu framlög</div>
-          {newestPurchases.map((purchase: NewPurchase, index: number) => (
-            <Row className='purchase' key={index}>
-              <Col md={4} className='participant'>{purchase.participantName}</Col>
-              <Col md={4} className='municipality'>{purchase.municipalityName}</Col>
-              <Col md={4} className='co2'>{purchase.totalCo2} tonn</Col>
-            </Row>
-          ))}
-        </Col>
-      </Row>
-      <InfoSection title = "Jöfnum okkur á loftlagsbreytingum!"  text = "Gerðu þitt í baráttunni með því að kolefnisjafna rekstur heimilisins. Skráðu þig inn í gegnum Facebook og kolefnisjafnaðu í gegnum sjóð að eigin vali. Jafnaðu þig á loftlagsbreytingum og losnaðu við flugviskubitið!"
-      imagePath="/assets/travel.png" />
+      {/* <Button onClick={() => setOpenModal('leaderboard')}>
+        Sjá stigatöflu
+      </Button> */}
+      <div className="leaderboard_container">
+        <div className='participants'>
+         
+            <div className='title '>Nýjustu framlög</div>
 
-      <InfoSection title = "Hvað er kolefnisjöfnun?"
-                   text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, ein þeirra er að gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
-                   imagePath="/assets/seed.png" />
+            {newestPurchases.map((purchase: NewPurchase, index: number) => (
+              <div className='purchase ' key={index}>
+                <div className='participant'>{purchase.participantName}</div>
+                <div className='municipality'>{purchase.municipalityName}</div>
+                <div className='co2'>{Math.round(purchase.totalCo2)} tonn</div>
+              </div>
+            ))}
+         
+        </div>
+      </div>
 
-<InfoSection title = "Jafnaðu þig mest!"
-                   text = "Við höldum utan um það hvaða bæjarfélög jafna sig hraðast. Þeir sem hafa mesta jafnaðargeðið birtast á topp fimm lista okkar, en þú sem einstaklingur birtist einnig í einstaklingskeppninni. Sýndu vinum og ættingjum þínum hversu jafnlyndur einstaklingur þú ert!"
-                   imagePath="/assets/hall.png" />
-      <p className = "icons_whodunnit">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+      <InfoSection title="Jöfnum okkur á loftlagsbreytingum!" text="Gerðu þitt í baráttunni með því að kolefnisjafna rekstur heimilisins. Skráðu þig inn í gegnum Facebook og kolefnisjafnaðu í gegnum sjóð að eigin vali. Jafnaðu þig á loftlagsbreytingum og losnaðu við flugviskubitið!"
+        imagePath="/assets/travel.png" />
+
+      <InfoSection title="Hvað er kolefnisjöfnun?"
+        text="Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, ein þeirra er að gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
+        imagePath="/assets/seed.png" />
+
+      <InfoSection title="Jafnaðu þig mest!"
+        text="Við höldum utan um það hvaða bæjarfélög jafna sig hraðast. Þeir sem hafa mesta jafnaðargeðið birtast á topp fimm lista okkar, en þú sem einstaklingur birtist einnig í einstaklingskeppninni. Sýndu vinum og ættingjum þínum hversu jafnlyndur einstaklingur þú ert!"
+        imagePath="/assets/hall.png" />
+      <p className="icons_whodunnit">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+      <div className="leaderboard_container">
+        <div className='participants'>
+    
+            <div className='title'>Mest jafnað</div>
+            {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
+              <div className='purchase' key={index}>
+                <div className='participant'>{p.name}</div>
+                <div className='participant_title'>{p.title}</div>
+                <div className='co2'>{Math.round(p.totalCo2)} tonn</div>
+              </div>
+            ))}
+      
+
+        </div>
+      </div>
+
       <section className="chart_section">
         {!emissionTypes || emissionTypes.length === 0 ? null : (
           <Chart emissionData={emissionTypes} />
         )}
-       
+
       </section>
       <section className="chart_section doughnut_chart">
 

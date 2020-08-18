@@ -1,4 +1,5 @@
 export type LeaderBoardParticipant = {
     totalCo2: number,
-    name: string
+    name: string,
+    title: string
 }

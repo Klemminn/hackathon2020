@@ -3,6 +3,73 @@
   margin: 1em;
 }
 .home-page {
+  .leaderboard_container {
+    @media (max-width: 790px) {
+      width: 100%;
+      margin-top: 4em;
+    }
+
+    @media (min-width: 791px) {
+      width: 60vw;
+      margin-top: 4em;
+    }
+
+
+    margin: auto;
+
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+
+    filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.25));
+    overflow: hidden;
+
+    .participants {
+      .title {
+        padding: 0.5em;
+        font-size: 1.2em;
+        text-shadow: 0 0 0.2em #000;
+        color: white;
+        background-color: var(--leader-board-head-color);
+      }
+
+      .newest {
+        .purchase {
+          display: flex;
+        }
+      }
+      .title {
+        text-align: center;
+      }
+      .purchase {
+        display: flex;
+        padding: 0.8em;
+
+        .participant{
+          flex:3;
+        }
+        .municipality{
+          flex:2;
+        }
+        .co2{
+          flex:1;
+        }
+        .participant_title{
+          flex:2;
+        }
+      }
+    }
+ 
+
+    .purchase:nth-child(even) {
+      background-color: var(--row-even);
+    }
+    .purchase:nth-child(odd) {
+      background-color: var(--row-odd);
+    }
+  }
+
   .tagline {
     color: white;
 
@@ -150,7 +217,6 @@
   }
 
   .doughnut_chart {
-   
     @media (min-width: 790px) {
       min-height: 500px;
       width: 90vw;
@@ -166,14 +232,14 @@
     flex-flow: column nowrap;
     height: 70vh;
     min-height: 400px;
-
+   
     @media (min-width: 791px) {
-      width: 70vw;
-      padding: 5vw;
+      width: 75vw;
+      margin-top:4em;
     }
     @media (max-width: 790px) {
       width: 100%;
-      padding: 5px;
+      margin-top:6em;
       height: 30vh;
     }
 
@@ -182,6 +248,7 @@
       width: 100%;
       max-width: 800px;
       margin: auto;
+  
       .header_style {
         text-align: center;
         margin-bottom: 1em;
@@ -191,18 +258,6 @@
   
   .icons_whodunnit {
     display: none;
-  }
-
-  .participants {
-    .title {
-      font-size: 1.2em;
-      font-weight: 500;
-    }
-    .newest {
-      .purchase {
-        display: flex;
-      }
-    }
   }
 }
 

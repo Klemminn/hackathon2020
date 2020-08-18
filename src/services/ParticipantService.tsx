@@ -55,7 +55,7 @@ class ParticipantService {
 
   static async getLeaderboard() {
     const { data } = await connector.get("/leaderboard/");
-
+    data.map( (x: any) =>  x.title = this.getTitle(x.totalCo2)) ;  
     return data;
   }
 
