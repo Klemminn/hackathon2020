@@ -1,8 +1,9 @@
+/* global FB */
 import React from "react";
 
 import { useStateLink } from "@hookstate/core";
 
-import { Modal, Row, ProgressBar } from "components";
+import { Modal, Row, ProgressBar, FacebookButton } from "components";
 import { Participant } from "types";
 import { FormatUtils } from "utils";
 import { ParticipantState } from "states";
@@ -25,6 +26,15 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
     progress = (participant.co2Offset) / emissionPerPerson;
   }
 
+  const shareOnFacebook = () => {
+    FB.ui({
+      method: 'share',
+      href: 'https://jofnumokkur.xyz',
+      quote: 'Ég er búinn að standa mig vel í kolefnisjöfnun, hvað með þig?'
+    }, (response) => {
+
+    })
+  }
 
   
   const treeCount = co2PerItem * participant.co2Offset;
@@ -97,6 +107,9 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
         </div>
 
       </Row>
+      <div className='share-options'>
+        <FacebookButton text='Deila á Facebook' onClick={() => shareOnFacebook()} />
+      </div>
       <div className="icons_whodunnit">Icons made by <a href="https://www.flaticon.com/free-icon/tree_740938?term=tree&page=2&position=82" title="Vectors Market">Vectors Market</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </Modal>
   );

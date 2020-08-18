@@ -159,7 +159,7 @@ const Home = () => {
           {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
             <Row className='purchase' key={index}>
               <Col md={6} className='participant'>{p.name}</Col>
-              <Col md={6} className='co2'>{p.totalCo2} tonn</Col>
+              <Col md={6} className='co2'>{FormatUtils.thousandSeparator(Math.round((p.totalCo2 * 10) / 10))} tonn</Col>
             </Row>
           ))}
         </Col>
