@@ -1,8 +1,8 @@
 import React from "react";
-import { Label, Progress } from "reactstrap";
+
 import { useStateLink } from "@hookstate/core";
 
-import { Modal, Row, Col, ProgressBar } from "components";
+import { Modal, Row, ProgressBar } from "components";
 import { Participant } from "types";
 import { FormatUtils } from "utils";
 import { ParticipantState } from "states";
