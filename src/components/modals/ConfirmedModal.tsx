@@ -24,7 +24,6 @@ const ConfirmedModal = ({ municipalities, totalPopulation, totalCo2, ...rest }: 
     <Modal
       className='confirmed-modal-component'
       size='xl'
-      header='Staða sveitarfélaga'
       {...rest}
     >
       <InfoSection
