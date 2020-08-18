@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal } from 'components'
-import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService } from 'services'
-import { Municipality } from 'types'
+import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal, Row, Col } from 'components'
+import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService, ParticipantService } from 'services'
+import { Municipality, NewPurchase, LeaderBoardParticipant } from 'types'
 import { FormatUtils } from 'utils'
 
 import './Home.scss'
@@ -12,6 +12,8 @@ const Home = () => {
   const [openModal, setOpenModal] = useState("");
   const [totalOffset, setTotalOffset] = useState(0);
   const [totalCo2, setTotalCo2] = useState(0);
+  const [newestPurchases, setNewestPurchases]: [NewPurchase[], any] = useState([]);
+  const [leaderboard, setLeaderboard]: [LeaderBoardParticipant[], any] = useState([]);
   const [totalPopulation, setTotalPopulation] = useState(0);
   const [progress, setProgress] = useState(0);
   const [emissionTypes, setEmissionTypes]: [any[], any] = useState([]);
@@ -23,6 +25,8 @@ const Home = () => {
   const getAllProgress = () => {
     getProgress();
     getMunicipalities();
+    getNewestPurchases();
+    getLeaderboard();
   }
 
   useEffect(() => {
@@ -39,6 +43,20 @@ const Home = () => {
       console.log(error)
     );
     setOffsetAgents(agents);
+  };
+
+  const getNewestPurchases = async () => {
+    const purchases = await PurchaseService.getNewestPurchases().catch(error =>
+      console.log(error)
+    );
+    setNewestPurchases(purchases);
+  };
+
+  const getLeaderboard = async () => {
+    const response = await ParticipantService.getLeaderboard().catch(error =>
+      console.log(error)
+    );
+    setLeaderboard(response);
   };
 
   const getEmissionTypes = async () => {
@@ -133,11 +151,32 @@ const Home = () => {
       {/* <Button onClick={() => setOpenModal('leaderboard')}>
         Sjá stigatöflu
       </Button> */}
-      <InfoSection title = "Jöfnum okkur á loftlagsbreytingum!"  text = "Gerðu þitt í baráttunni með því að gróðursetja tré. Skráðu þig inn í gegnum Facebook og kauptu tré frá kolefnisjöfnunarsjóði að eigin vali. Jafnaðu þig á loftlagsbreytingum og losnaðu við flugviskubitið!"
+      <Row className='participants'>
+        <Col md={6} className='leaderboard'>
+          <div className='title'>Öflugustu þátttakendur</div>
+          {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
+            <Row className='purchase' key={index}>
+              <Col md={6} className='participant'>{p.name}</Col>
+              <Col md={6} className='co2'>{p.totalCo2} tonn</Col>
+            </Row>
+          ))}
+        </Col>
+        <Col md={6} className='newest'>
+          <div className='title'>Nýjustu framlög</div>
+          {newestPurchases.map((purchase: NewPurchase, index: number) => (
+            <Row className='purchase' key={index}>
+              <Col md={4} className='participant'>{purchase.participantName}</Col>
+              <Col md={4} className='municipality'>{purchase.municipalityName}</Col>
+              <Col md={4} className='co2'>{purchase.totalCo2} tonn</Col>
+            </Row>
+          ))}
+        </Col>
+      </Row>
+      <InfoSection title = "Jöfnum okkur á loftlagsbreytingum!"  text = "Gerðu þitt í baráttunni með því að kolefnisjafna rekstur heimilisins. Skráðu þig inn í gegnum Facebook og kolefnisjafnaðu í gegnum sjóð að eigin vali. Jafnaðu þig á loftlagsbreytingum og losnaðu við flugviskubitið!"
       imagePath="/assets/travel.png" />
 
       <InfoSection title = "Hvað er kolefnisjöfnun?"
-                   text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, en ein þeirra er að  gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
+                   text = "Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, ein þeirra er að gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
                    imagePath="/assets/seed.png" />
 
 <InfoSection title = "Jafnaðu þig mest!"

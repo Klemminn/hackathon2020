@@ -8,6 +8,11 @@ class PurchaseService {
     return data
   }
 
+  static async getNewestPurchases () {
+    const { data } = await connector.get('/newestPurchases/')
+    return data
+  }
+
   static async createPurchase (body: Purchase) {
     const { data } = await connector.post('/purchase/', body)
     return data

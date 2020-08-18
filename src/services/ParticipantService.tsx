@@ -53,6 +53,12 @@ class ParticipantService {
     return data;
   }
 
+  static async getLeaderboard() {
+    const { data } = await connector.get("/leaderboard/");
+
+    return data;
+  }
+
   static getTitle(points : number){
     return ( titles.find(x=> x.points >= points) || titles[titles.length-1]).title;
   }
