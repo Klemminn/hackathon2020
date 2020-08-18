@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useStateLink } from '@hookstate/core'
 
-import { FacebookLoginButton, ParticipantDropdown, MyPurchasesModal } from 'components'
+import { FacebookButton, ParticipantDropdown, MyPurchasesModal } from 'components'
 import { ParticipantService, MunicipalityService, Co2EmissionService } from 'services'
 import { Participant, Municipality,} from 'types'
 import { ParticipantState, setParticipant } from 'states'
@@ -107,7 +107,7 @@ const UserHeaderStatus = () => {
     if (loading) {
       return null
     } else if (!participant ?.name) {
-      return <FacebookLoginButton onClick={facebookLogin} />
+      return <FacebookButton onClick={facebookLogin} text='Innskrá með Facebook' />
     }
     return (
       <div>

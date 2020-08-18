@@ -1,0 +1,18 @@
+.info_section {
+  padding-top: 4em;
+  margin: auto;
+  width: 60vw;
+  max-width: 800px;
+  display: flex;
+  flex-flow: column nowrap;
+  h2 {
+    text-align: center;
+  }
+  p {
+    line-height: 1.5;
+  }
+  img {
+    width: 70px;
+    margin: auto;
+  }
+}

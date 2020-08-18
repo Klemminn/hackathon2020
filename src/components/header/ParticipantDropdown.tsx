@@ -18,7 +18,7 @@ const ParticipantDropdown = ({ participant, logout, myPurchases }: ParticipantDr
       <DropdownToggle nav>
         <IconButton
           text={FormatUtils.getFirstName( participant ? participant.name : "")}
-          subtext = {(participant?.title || "") + "\n" +  FormatUtils.thousandSeparator((participant?.co2Offset || 0) * 10) +  " tré"}
+          subtext = {(participant?.title || "") + "\n" +  FormatUtils.thousandSeparator(Math.round((participant?.co2Offset || 0) * 10)) + " tré"}
           icon={FaLeaf}
         />
       </DropdownToggle>

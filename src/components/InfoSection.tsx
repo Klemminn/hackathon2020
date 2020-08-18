@@ -1,5 +1,7 @@
 import React from "react";
 
+import './InfoSection.scss'
+
 type InfoSectionProps = {
   text?: string;
   title?: string;

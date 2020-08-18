@@ -9,7 +9,7 @@ type Co2CounterProps = {
 
 const Co2Counter = ({ totalOffset, ...rest }: Co2CounterProps) => (
   <div {...rest}>
-    <p>{FormatUtils.thousandSeparator(totalOffset)}</p>
+    <p>{FormatUtils.thousandSeparator(Math.round(totalOffset * 10) / 10)}</p>
     <p> tonn jöfnuð</p>
   </div>
 )

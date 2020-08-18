@@ -4,7 +4,7 @@ import { useStateLink } from '@hookstate/core'
 
 import { Modal, Form, Row, Col, FormInput, FormSearchableSelect, FormTextarea, OffsetAgentSelector, FormSwitch, Button } from 'components'
 import { OffsetAgent, Participant, Municipality } from 'types'
-import { FormatUtils, FormUtils, ToastUtils } from 'utils'
+import { FormatUtils, FormUtils } from 'utils'
 import { ParticipantState, updateCo2 } from 'states'
 import { PurchaseService } from 'services'
 
@@ -67,11 +67,9 @@ const PurchaseModal = ({ offsetAgents, emissionPerPerson, municipalities, onSubm
       }
       PurchaseService.createPurchase(body)
       setTimeout(() => {
-        onSubmit()
-        ToastUtils.success('😃 Snilld! Takk fyrir að kolefnisjafna')
         setLoading(false)
         participant && updateCo2()
-        rest.toggle()
+        onSubmit()
       }, 1000)
     } catch (e) {
       console.log(e)

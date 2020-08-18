@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-import { Button, CurvedProgressBar, Co2Counter, MunicipalitiesModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal, Row, Col } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, MunicipalitiesModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, ConfirmedModal, PurchaseModal, Row, Col } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService, ParticipantService } from 'services'
 import { Municipality, NewPurchase, LeaderBoardParticipant } from 'types'
 import { FormatUtils } from 'utils'
@@ -210,7 +210,14 @@ const Home = () => {
         offsetAgents={offsetAgents}
         emissionPerPerson={totalCo2 / totalPopulation}
         municipalities={municipalities}
-        onSubmit={() => getAllProgress()}
+        onSubmit={() => {
+          getAllProgress()
+          setOpenModal('confirmed')
+        }}
+      />
+      <ConfirmedModal
+        isOpen={openModal === "confirmed"}
+        toggle={() => setOpenModal("")}
       />
       <ReactTooltip />
     </div>
