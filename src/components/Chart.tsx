@@ -45,7 +45,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
     if (x.subtypes.length <= maxTooltipCategories || !x.subtypes) return x;
     var lastEntryValue = x.subtypes[maxTooltipCategories].co2;
     x.subtypes.length = maxTooltipCategories;
-    x.subtypes[maxTooltipCategories] = {name:"Aðrir flokkar minna en", co2: lastEntryValue};
+    x.subtypes[maxTooltipCategories] = { name: "Aðrir flokkar minna en", co2: lastEntryValue };
     return x;
   });
   var colorsIdx = 0;
@@ -64,6 +64,24 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
   };
 
   let options = {
+    plugins: {
+      labels: {
+        // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+        render: 'percentage',
+
+        overlap: false,
+        arc: true,
+        textShadow: true,
+        // text shadow intensity, default is 6
+        shadowBlur: 10,
+        fontSize: 14,
+        // text shadow X offset, default is 3
+        shadowOffsetX: -5,
+        fontColor: '#000',
+        // text shadow Y offset, default is 3
+        shadowOffsetY: 5,
+      }
+    },
     animation: {
       duation: 2000
     },
@@ -84,7 +102,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
             display: true
           },
           ticks: {
-            callback: function(value: number) {
+            callback: function (value: number) {
               return value.toLocaleString("IS-is");
             }
           }
@@ -118,12 +136,12 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
       bodySpacing: 3,
       titleAlign: "center",
       callbacks: {
-        title: function(tooltipItem: any, data: any) {
-        
+        title: function (tooltipItem: any, data: any) {
+
           tooltipItem = tooltipItem[0];
           return data.datasets[tooltipItem.datasetIndex].label;
         },
-        label: function(tooltipItem: any, data: any) {
+        label: function (tooltipItem: any, data: any) {
           var label = data.datasets[tooltipItem.datasetIndex].subgroups.map(
             (x: any) => {
               var percentage = Math.round((x.co2 / sumTotal) * 1000) / 10;

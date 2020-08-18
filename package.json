@@ -20,6 +20,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
+    "chartjs-plugin-labels": "^1.1.0",
     "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
     "progressbar.js": "^1.1.0",

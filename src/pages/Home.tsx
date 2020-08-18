@@ -120,7 +120,7 @@ const Home = () => {
             className='tagline'
             data-tip={`Samkvæmt tölum Hagstofunnar er heildar útblástur frá heimilum landsmanna ${FormatUtils.thousandSeparator(totalCo2)} tonn, eða ${FormatUtils.round(totalCo2 / totalPopulation, 1)} tonn á hvern einstakling.`}
           >
-            Saman ætlum við að kolefnisjafna heimili landsins
+            Kolefnisjöfnum heimili landsins
           </div>
           <div className="counter_and_logo_container">
             <Co2Counter className="co2counter" totalOffset={totalOffset} />

@@ -1,5 +1,5 @@
 import React from "react";
-
+import 'chartjs-plugin-labels';
 import { Doughnut } from "react-chartjs-2";
 
 type DoughtnutChartProps = {
@@ -58,6 +58,31 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
   };
 
   let options = {
+    plugins: {
+      labels: {
+        // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+        render:  function (args: any) {
+          // args will be something like:
+          // { label: 'Label', value: 123, percentage: 50, index: 0, dataset: {...} }
+          return args.percentage + '% - ' + args.label;
+      
+          // return object if it is image
+          // return { src: 'image.png', width: 16, height: 16 };
+        },
+
+        overlap: false,
+        arc: true,
+        textShadow: true,
+        // text shadow intensity, default is 6
+        shadowBlur: 10,
+        fontSize: 14,
+        // text shadow X offset, default is 3
+        shadowOffsetX: -5,
+        fontColor: '#000',
+        // text shadow Y offset, default is 3
+        shadowOffsetY: 5,
+      }
+    },
     animation: {
       duation: 0
     },
