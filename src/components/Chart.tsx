@@ -42,11 +42,11 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
   const maxTooltipCategories = colors.length;
   //Prevent tooltip from becoming too large
   emissionData.map(x => {
-    if (x.subtypes.length <= maxTooltipCategories || !x.subtypes) return;
+    if (x.subtypes.length <= maxTooltipCategories || !x.subtypes) return x;
     var lastEntryValue = x.subtypes[maxTooltipCategories].co2;
     x.subtypes.length = maxTooltipCategories;
-
     x.subtypes[maxTooltipCategories] = {name:"Aðrir flokkar minna en", co2: lastEntryValue};
+    return x;
   });
   var colorsIdx = 0;
   let chartData = {

@@ -8,10 +8,11 @@ import { Participant } from 'types'
 
 type ParticipantDropdownProps = {
   participant?: Participant,
-  logout(): void
+  logout(): void,
+  myPurchases() : void
 }
 
-const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) => (
+const ParticipantDropdown = ({ participant, logout, myPurchases }: ParticipantDropdownProps) => (
   <>
     <UncontrolledDropdown nav inNavbar>
       <DropdownToggle nav>
@@ -22,7 +23,7 @@ const ParticipantDropdown = ({ participant, logout }: ParticipantDropdownProps) 
         />
       </DropdownToggle>
       <DropdownMenu right>
-        <DropdownItem>
+        <DropdownItem onClick={myPurchases}>
           Skógurinn minn
         </DropdownItem>
         <DropdownItem divider />

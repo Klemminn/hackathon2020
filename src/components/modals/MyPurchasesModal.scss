@@ -1,0 +1,61 @@
+.modal-content {
+
+}
+.modal-title {
+  text-align: center;
+  margin: auto;
+  color: #898;
+}
+.progressbar-text{
+  text-shadow: 0 0 0.2em black;
+  color:white !important;
+}
+.my-purchases-modal-component {
+  .click_on_frontpage_text{
+    font-size: 1.5em;
+  }
+  .participant_title{
+    color:green;
+    text-align:center;
+    margin:auto;
+    padding-bottom:1em;
+  }
+  .progress-container {
+    margin: auto;
+    justify-content: center;
+    padding: 2em;
+    padding-top:0.5em;
+    p {
+      text-align: center;
+    }
+  }
+
+  .icons_whodunnit {
+    display: none;
+  }
+  .tree-container {
+    max-width: 80vw;
+    max-height: 80vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    .tree-image {
+      flex: 1;
+      max-width: 30px;
+      animation-name: fadeIn;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;
+      animation-duration: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

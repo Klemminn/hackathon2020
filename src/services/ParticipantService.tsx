@@ -5,38 +5,35 @@ const titles = [
     points: 0,
     title: "Nýgræðlingur"
   },
+ 
   {
-    points: 100,
-    title: "Nýgræðlingur"
-  },
-  {
-    points: 500,
+    points: 5,
     title: "Græðlingur"
   },
   {
-    points: 800,
+    points: 10,
     title: "Viðarvinur"
   },
   {
-    points: 800,
+    points: 20,
     title: "Trjáaldur"
   },
   {
-    points: 1200,
+    points: 30,
     title: "Trjáhvíslari"
   }
   ,
   {
-    points: 2000,
+    points: 40,
     title: "Skóghirðir"
   }
   ,
   {
-    points: 5000,
+    points: 50,
     title: "Entur"
   },
   {
-    points: 10000,
+    points: 100,
     title: "Landvættur"
   }
 ];
@@ -57,7 +54,7 @@ class ParticipantService {
   }
 
   static getTitle(points : number){
-    return ( titles.find(x=> x.points <= points) || titles[titles.length-1]).title;
+    return ( titles.find(x=> x.points >= points) || titles[titles.length-1]).title;
   }
 }
 
