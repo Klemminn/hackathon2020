@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-import { Button, CurvedProgressBar, Co2Counter, LeaderboardModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal, Row, Col } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, MunicipalitiesModal, MunicipalityProgress, InfoSection, Chart, DoughnutChart, PurchaseModal, Row, Col } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService, ParticipantService } from 'services'
 import { Municipality, NewPurchase, LeaderBoardParticipant } from 'types'
 import { FormatUtils } from 'utils'
@@ -141,16 +141,18 @@ const Home = () => {
                   />
                 )
               )}
-              <Button className='view-all-municipalities'>Sjá öll</Button>
+              <Button
+                className='view-all-municipalities'
+                onClick={() => setOpenModal('municipalities')}
+              >
+                Sjá öll
+              </Button>
             </div>
           </div>
           <CurvedProgressBar progress={progress} />
         </div>
 
       </section>
-      {/* <Button onClick={() => setOpenModal('leaderboard')}>
-        Sjá stigatöflu
-      </Button> */}
       <Row className='participants'>
         <Col md={6} className='leaderboard'>
           <div className='title'>Öflugustu þátttakendur</div>
@@ -195,9 +197,12 @@ const Home = () => {
           <DoughnutChart emissionData={emissionTypes} />
         )}
       </section>
-      <LeaderboardModal
-        isOpen={openModal === "leaderboard"}
+      <MunicipalitiesModal
+        municipalities={municipalities}
+        isOpen={openModal === "municipalities"}
         toggle={() => setOpenModal("")}
+        totalPopulation={totalPopulation}
+        totalCo2={totalCo2}
       />
       <PurchaseModal
         isOpen={openModal === "purchase"}
