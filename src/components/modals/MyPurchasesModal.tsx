@@ -79,7 +79,7 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
 
         <div className="progress-container">
           <h2 className="participant_title">{participant.title}</h2>
-          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að kolefnisjafna á við {FormatUtils.thousandSeparator(treeCount)} tré {participant.co2Offset > 0 ?  " sem nemur " + percentage + "% af árlegum heimilishluta kolefnislosunar meðal Íslendingsins" : ""}</p>
+          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að kolefnisjafna á við {FormatUtils.thousandSeparator(Math.round(treeCount))} tré {participant.co2Offset > 0 ?  " sem nemur " + percentage + "% af árlegum heimilishluta kolefnislosunar meðal Íslendingsins" : ""}</p>
           {participant.co2Offset > 0 ?
             <ProgressBar.Line
               options={{
