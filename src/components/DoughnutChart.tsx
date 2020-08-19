@@ -33,15 +33,16 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
     document.documentElement
   ).getPropertyValue("--chart-tooltip-color");
 
-  emissionData = emissionData.sort((x, y) => {
-    return y.co2 - x.co2;
-  });
+
  // var sumTotal = emissionData.map(x => x.co2).reduce((x, y) => x + y);
 
-  emissionData.length = 6;
+
   var tempArr: any[] = [];
   emissionData.map(x => (tempArr = tempArr.concat(x.subtypes)));
   emissionData = tempArr;
+  emissionData = emissionData.sort((x, y) => {
+    return y.co2 - x.co2;
+  });
   emissionData.length = colors.length;
 
   let chartData = {
