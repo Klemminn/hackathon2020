@@ -33,6 +33,9 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
     document.documentElement
   ).getPropertyValue("--chart-tooltip-color");
 
+  const chartSubLabelColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--chart-sublabel-color");
 
  // var sumTotal = emissionData.map(x => x.co2).reduce((x, y) => x + y);
 
@@ -99,6 +102,28 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
     responsiveAnimationDuration: 500,
     hover: {
       mode: "index"
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            drawBorder: false,
+            display:false
+          },
+          scaleLabel: {
+            labelString: "Tonn af CO2 losuð, stærstu undirflokkar (Heimild: Hagstofa Íslands)",
+            fontSize: 14,
+            fontColor: chartSubLabelColor,
+            padding: 6,
+            display: true
+          },
+          ticks: {
+            callback: function (value: number) {
+              return "";
+            }
+          }
+        }
+      ]
     },
     tooltips: {
       mode: "index",

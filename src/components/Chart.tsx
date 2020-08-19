@@ -32,6 +32,10 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
   const chartTooltipColor = getComputedStyle(
     document.documentElement
   ).getPropertyValue("--chart-tooltip-color");
+  
+  const chartSubLabelColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--chart-sublabel-color");
 
   emissionData = emissionData.sort((x, y) => {
     return y.co2 - x.co2;
@@ -95,9 +99,9 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
             drawBorder: false
           },
           scaleLabel: {
-            labelString: "Tonn af CO2 losuð",
-            fontSize: 16,
-            fontColor: "#ccc",
+            labelString: "Tonn af CO2 losuð, stærstu yfirflokkar (Heimild: Hagstofa Íslands)",
+            fontSize: 14,
+            fontColor: chartSubLabelColor,
             padding: 6,
             display: true
           },
