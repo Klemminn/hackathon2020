@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactTooltip from 'react-tooltip'
 
-import { Button, CurvedProgressBar, Co2Counter, MunicipalityProgress, InfoSection, Chart, DoughnutChart, ConfirmedModal, MunicipalitiesModal,  PurchaseModal } from 'components'
+import { Button, CurvedProgressBar, Co2Counter, MunicipalityProgress, InfoSection, Chart, DoughnutChart, ConfirmedModal, MunicipalitiesModal, PurchaseModal } from 'components'
 import { Co2EmissionService, PurchaseService, MunicipalityService, OffsetAgentService, ParticipantService } from 'services'
 import { Municipality, NewPurchase, LeaderBoardParticipant } from 'types'
 import { FormatUtils } from 'utils'
@@ -158,17 +158,17 @@ const Home = () => {
       </Button> */}
       <div className="leaderboard_container">
         <div className='participants'>
-         
-            <div className='title '>Nýjustu framlög</div>
 
-            {newestPurchases.map((purchase: NewPurchase, index: number) => (
-              <div className='purchase ' key={index}>
-                <div className='participant'>{purchase.participantName}</div>
-                <div className='municipality'>{purchase.municipalityName}</div>
-                <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * purchase.totalCo2) / 10)} tonn</div>
-              </div>
-            ))}
-         
+          <div className='title '>Nýjustu framlög</div>
+
+          {newestPurchases.map((purchase: NewPurchase, index: number) => (
+            <div className='purchase ' key={index}>
+              <div className='participant'>{purchase.participantName}</div>
+              <div className='municipality'>{purchase.municipalityName}</div>
+              <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * purchase.totalCo2) / 10)} tonn</div>
+            </div>
+          ))}
+
         </div>
       </div>
 
@@ -176,25 +176,27 @@ const Home = () => {
         imagePath="/assets/travel.png" />
 
       <InfoSection title="Hvað er kolefnisjöfnun?"
-        text="Kolefnisjöfnun snýst um að binda aftur þau kolefni losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, ein þeirra er að gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
+        text="Kolefnisjöfnun snýst um að binda aftur þau kolefni sem losuð hafa verið út í andrúmsloftið. Til eru ýmsar aðferðir til þess, ein þeirra er að gróðursetja tré. Með því að binda kolefni vegur þú á móti losun gróðurhúsalofttegunda og tekur grænt skref inn í framtíðina."
         imagePath="/assets/seed.png" />
 
       <InfoSection title="Jafnaðu þig mest!"
         text="Við höldum utan um það hvaða bæjarfélög jafna sig hraðast. Þeir sem hafa mesta jafnaðargeðið birtast á topp fimm lista okkar, en þú sem einstaklingur birtist einnig í einstaklingskeppninni. Sýndu vinum og ættingjum þínum hversu jafnlyndur einstaklingur þú ert!"
         imagePath="/assets/hall.png" />
-      <p className="icons_whodunnit">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+      <p className="icons_whodunnit">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from  <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        <div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      </p>
       <div className="leaderboard_container">
         <div className='participants'>
-    
-            <div className='title'>Mest jafnað</div>
-            {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
-              <div className='purchase' key={index}>
-                <div className='participant'>{p.name}</div>
-                <div className='participant_title'>{p.title}</div>
-                <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * p.totalCo2) / 10)} tonn</div>
-              </div>
-            ))}
-      
+
+          <div className='title'>Kolefnishetjurnar</div>
+          {leaderboard.map((p: LeaderBoardParticipant, index: number) => (
+            <div className='purchase' key={index}>
+              <div className='participant'>{p.name}</div>
+              <div className='participant_title'>{p.title}</div>
+              <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * p.totalCo2) / 10)} tonn</div>
+            </div>
+          ))}
+
 
         </div>
       </div>
@@ -211,6 +213,11 @@ const Home = () => {
           <DoughnutChart emissionData={emissionTypes} />
         )}
       </section>
+
+      <InfoSection title="Útreikningar"
+        text={"Við notum tölur Hagstofunnar <a href='https://px.hagstofa.is/pxis/pxweb/is/Umhverfi/Umhverfi__2_losunlofttegunda__2_losunlofttegunda_aea/UMH31110.px/?rxid=8f9a2427-1d09-41ab-98cf-f22be3cd9d9b'>um losun gróðurhúsalofttegunda</a> ásamt <a href ='http://px.hagstofa.is/pxen/pxweb/is/Ibuar/Ibuar__mannfjoldi__1_yfirlit__arsfjordungstolur/MAN10001.px/?rxid=f4a21b41-fb7a-45dc-9aec-62ae2d3cea5c'>mannfjöldatölum</a> til þess að reikna út hversu mikið meðal Íslendingurinn þyrfti að kolefnisjafna sig. Við miðum aðeins við losun heimilanna þegar prósenta kolefnisjöfnunar er reiknuð út. " +`Heildar útblástur CO2 frá heimilum landsmanna er ${FormatUtils.thousandSeparator(totalCo2)} tonn, eða ${FormatUtils.round(totalCo2 / totalPopulation, 1)} tonn á hvern einstakling.`}
+        imagePath="/assets/math.png" />
+
       <MunicipalitiesModal
         municipalities={municipalities}
         isOpen={openModal === "municipalities"}
