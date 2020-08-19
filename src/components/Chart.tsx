@@ -2,6 +2,8 @@ import React from "react";
 
 import { HorizontalBar } from "react-chartjs-2";
 
+import { FormatUtils } from 'utils'
+
 type ChartProps = {
   emissionData: any[];
   [rest: string]: any;
@@ -107,7 +109,7 @@ const Chart = ({ emissionData, ...rest }: ChartProps) => {
           },
           ticks: {
             callback: function (value: number) {
-              return value.toLocaleString("IS-is");
+              return FormatUtils.thousandSeparator(Math.round(value));
             }
           }
         }

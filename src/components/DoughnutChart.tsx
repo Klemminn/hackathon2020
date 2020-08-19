@@ -1,6 +1,7 @@
 import React from "react";
 import 'chartjs-plugin-labels';
 import { Doughnut } from "react-chartjs-2";
+import { FormatUtils } from 'utils'
 
 type DoughtnutChartProps = {
   emissionData: any[];
@@ -146,7 +147,7 @@ const DoughnutChart = ({ emissionData, ...rest }: DoughtnutChartProps) => {
           var dataEntry = data.datasets[tooltipItem.datasetIndex];
           var value = dataEntry.data[tooltipItem.index];
           var label = data.labels[tooltipItem.index];
-          return label + ": " + value.toLocaleString("IS-is") + " tonn af CO2";
+          return label + ": " + FormatUtils.thousandSeparator(Math.round(value)) + " tonn af CO2";
         }
       }
     }
