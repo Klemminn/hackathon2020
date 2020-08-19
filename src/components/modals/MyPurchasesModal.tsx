@@ -74,12 +74,10 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
       size="xl"
       {...rest}
     >
-
       <Row>
-
         <div className="progress-container">
           <h2 className="participant_title">{participant.title}</h2>
-          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að kolefnisjafna á við {FormatUtils.thousandSeparator(treeCount)} tré {participant.co2Offset > 0 ?  " sem nemur " + percentage + "% af árlegum heimilishluta kolefnislosunar meðal Íslendingsins" : ""}</p>
+          <p>{participant.co2Offset > 10 ? "Vel gert! " : ""} Þú ert búin/n að kolefnisjafna á við {FormatUtils.thousandSeparator(Math.round(treeCount))} tré {participant.co2Offset > 0 ?  " sem nemur " + percentage + "% af kolefnislosun meðal Íslendingsins" : ""}</p>
           {participant.co2Offset > 0 ?
             <ProgressBar.Line
               options={{
@@ -95,7 +93,6 @@ const MyPurchasesModal = ({ emissionPerPerson, ...rest }: MyPurchasesModalProps)
             /> : null}
           {participant.co2Offset === 0 ? <p className = "click_on_frontpage_text">Smelltu á Jafnaðu þig á forsíðunni til að byrja að kolefnisjafna strax í dag!</p> : ""}
         </div>
-
       </Row>
 
       <Row>

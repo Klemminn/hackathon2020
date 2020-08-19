@@ -4,5 +4,5 @@ export type Participant = {
   email: string,
   co2Offset: number,
   defaultMunicipality?: number,
-  title?:string
+  title: string
 } | null

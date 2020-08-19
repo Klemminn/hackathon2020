@@ -165,7 +165,7 @@ const Home = () => {
               <div className='purchase ' key={index}>
                 <div className='participant'>{purchase.participantName}</div>
                 <div className='municipality'>{purchase.municipalityName}</div>
-                <div className='co2'>{Math.round(purchase.totalCo2)} tonn</div>
+                <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * purchase.totalCo2) / 10)} tonn</div>
               </div>
             ))}
          
@@ -191,7 +191,7 @@ const Home = () => {
               <div className='purchase' key={index}>
                 <div className='participant'>{p.name}</div>
                 <div className='participant_title'>{p.title}</div>
-                <div className='co2'>{Math.round(p.totalCo2)} tonn</div>
+                <div className='co2'>{FormatUtils.thousandSeparator(Math.round(10 * p.totalCo2) / 10)} tonn</div>
               </div>
             ))}
       

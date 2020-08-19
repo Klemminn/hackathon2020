@@ -13,14 +13,14 @@ $facebook-blue: #4267B2;
   --purple-soft: #{lighten($purple, 40%)};
   --progress-bar-trail: #a6a8b6;
   --progress-bar-fill: #fff234;
-  --leader-board-head-color: #fff234;
+  --leader-board-head-color: #{$green};
   --chart-tooltip-color: #000;
   --chart-tooltip-background: #eee;
   --white: #{$white};
   --green: #{$green};
   --green-soft: #{lighten($green, 60%)};
   --row-even: #fff ;
-  --row-odd: #fff566c4;
+  --row-odd: var(--green-soft);
   --facebook-blue: #{$facebook-blue};
 
   --grey-soft: #cccccc;
